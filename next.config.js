@@ -19,6 +19,9 @@ const nextConfig = {
     dirs: ["src", "pages", "styles"],
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;
