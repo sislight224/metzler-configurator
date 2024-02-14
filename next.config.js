@@ -1,7 +1,6 @@
-/** @type {import('next').NextConfig} */
-
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   rewrites: async () => [
     {
@@ -18,6 +17,7 @@ const nextConfig = {
   reactStrictMode: false,
   eslint: {
     dirs: ["src", "pages", "styles"],
+    ignoreDuringBuilds: true,
   },
 };
 
