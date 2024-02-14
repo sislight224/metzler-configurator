@@ -1,0 +1,27 @@
+.root_enter {
+  opacity: 0 !important;
+  transition: opacity .3s ease;
+}
+
+.root_enterActive {
+  opacity: 1 !important;
+}
+
+.root_enterDone {
+  opacity: 1 !important;
+  visibility: visible;
+}
+
+.root_exit {
+  opacity: 1 !important;
+  transition: opacity .3s ease;
+}
+
+.root_exitActive {
+  opacity: 0 !important;
+}
+
+.root_exitDone {
+  opacity: 0 !important;
+  visibility: hidden;
+}

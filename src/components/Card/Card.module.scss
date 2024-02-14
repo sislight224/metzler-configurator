@@ -1,0 +1,17 @@
+.root {
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.active {
+  border: 1px solid #337575;
+}
+
+.disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}

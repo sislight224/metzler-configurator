@@ -1,0 +1,35 @@
+@import '../../../../../../styles/theme/config.module';
+@import '../../Mixins.module';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 24px;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 32px;
+}
+
+.preview {
+  column-gap: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.infoLabel {
+  @include mixinInfoLabel;
+}
+
+.infoValue {
+  @include mixinInfoValue;
+}

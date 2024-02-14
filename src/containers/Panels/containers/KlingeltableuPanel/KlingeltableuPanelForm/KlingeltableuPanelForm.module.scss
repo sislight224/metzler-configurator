@@ -1,0 +1,73 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  padding: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: 'MontserratMedium', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: $borderColor;
+}
+
+.schriftartAndernContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

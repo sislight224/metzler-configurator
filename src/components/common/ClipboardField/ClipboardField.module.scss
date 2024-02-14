@@ -1,0 +1,54 @@
+@import 'styles/theme/config.module';
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  padding: 8px 36px 8px 16px;
+  border: 1px solid $grey_200;
+  border-radius: 4px;
+  color: $grey_400;
+  width: 100%;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    border-color: $grey_400;
+  }
+
+  &:focus, &:focus-visible {
+    outline: 0;
+    border: 1px solid $pine_green_800;
+    box-shadow: 0 0 0 4px rgba(197, 218, 247, 0.5);
+  }
+}
+
+.copyButton {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  user-select: none;
+
+  path {
+    stroke: $pine_green_900;
+  }
+
+  &:hover {
+    path {
+      stroke: $pine_green_800;
+    }
+  }
+
+  &:active {
+    path {
+      stroke: $pine_green_700;
+    }
+  }
+}

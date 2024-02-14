@@ -1,0 +1,67 @@
+// module organization is required for mui themes and usage inside components
+//https://nextjs.org/docs/basic-features/built-in-css-support#sass-support
+$accentBlue: #0A7BAB;
+$accentGreen: #005253;
+$accentGreen2: #337575;
+$bannerBlue: #C5DAF7;
+$bannerGreen: #D6FCD3;
+$bannerPeach: #F3ECE4;
+$baseTextColor: #333333;
+$white: #FFFFFF;
+$grey: #888888;
+$background: #EEEEEE;
+$surfaceColor: #F6F6F6;
+$borderColor: #DDDDDD;
+$background: #EEEEEE;
+
+//todo: #374151
+//pine green
+$pine_green_900: #005253;
+$pine_green_800: #337575;
+$pine_green_700: #48A3A3;
+$pine_green_050: #E8F3EE;
+
+//olive green
+$olive_green_400: #75A541;
+
+// msg green
+$msg_green: #198754;
+
+//mint green
+$mint_green_300: #D6FCD3;
+
+//msg green
+$msg_green: #198754;
+
+//grey
+$grey_900: #333333;
+$grey_400: #888888;
+$grey_200: #DDDDDD;
+$grey_100: #F0F0EE;
+$grey_050: #F6F6F6;
+
+$panelWidth: 440px;
+
+//red
+$msg_red: #DC3545;
+
+//fonts
+$baseFontFamily: 'MontserratMedium', -apple-system, sans-serif;
+$baseFontSemiBold: 'MontserratSemiBold';
+$baseFontRegular: 'MontserratRegular';
+$baseFontBold: 'MontserratBold';
+
+$xxs: 375px;
+$xs: 767px; // 0 - 767.98px (phones / small tablets)
+$sm: 1023px; // 768px - 1024.98px (tablets)
+$md: 1199px; // 1024px - 1199.98px (laptops)
+$lg: 1439px; // 1200px - 1439.98px (desktops)
+$xl: 1919px; // 1440px - 1919.98px (large desktops)
+
+
+:export {
+  pine_green_900: $pine_green_900;
+  pine_green_800: $pine_green_800;
+  pine_green_700: $pine_green_700;
+  bannerGreen: $bannerGreen;
+}

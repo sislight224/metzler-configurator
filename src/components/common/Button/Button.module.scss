@@ -1,0 +1,110 @@
+@import 'styles/theme/config.module';
+
+.root {
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 110%;
+  outline: none;
+  padding: 12px;
+  text-align: center;
+  transition: all 0.3s;
+  height: fit-content;
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(197, 218, 247, 0.5);
+  }
+}
+
+.root_colorScheme_primary {
+  background-color: $accentGreen;
+  color: $white;
+
+  &:hover {
+    background-color: $accentGreen2;
+  }
+
+  &:active {
+    background-color: $accentBlue;
+  }
+
+  &:disabled {
+    background-color: $borderColor;
+    color: $grey;
+    cursor: not-allowed;
+  }
+}
+
+.root_colorScheme_outline {
+  background-color: $background;
+  color: $accentGreen;
+  border: 1px solid $borderColor;
+
+  &:hover {
+    color: $accentGreen2;
+  }
+
+  &:active {
+    color: $accentBlue;
+  }
+
+  &:disabled {
+    color: $grey;
+    cursor: not-allowed;
+  }
+}
+
+.root_colorScheme_white-outlined {
+  background-color: $background;
+  color: $pine_green_900;
+  border: 1px solid $grey_200;
+
+  &:hover {
+    color: $pine_green_800;
+  }
+
+  &:active {
+    color: $accentBlue;
+  }
+
+  &:disabled {
+    color: $grey_400;
+    cursor: not-allowed;
+  }
+}
+
+.root_colorScheme_white-pine {
+  background-color: white;
+  color: $pine_green_900;
+  border: 1px solid $grey_200;
+
+  &:hover {
+    color: $pine_green_800;
+  }
+
+  &:active {
+    color: $accentBlue;
+  }
+
+  &:disabled {
+    color: $grey_400;
+    cursor: not-allowed;
+  }
+}
+
+.buttonPanelWidth {
+  width: 140px;
+
+  @media (max-width: $lg) {
+    width: 96px;
+  }
+
+  @media (max-width: $sm) {
+    width: 140px;
+  }
+
+  @media (max-width: $xxs) {
+    width: 96px;
+  }
+}

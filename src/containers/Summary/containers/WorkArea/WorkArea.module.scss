@@ -1,0 +1,35 @@
+@import 'styles/theme/config.module';
+
+.root {
+  width: 100%;
+  max-height: calc(100vh - 151px); // paddingTop + FooterControls height = 151
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $grey;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: $grey_400 transparent;
+
+  @media (max-width: $lg) {
+    width: 60%;
+  }
+
+  @media (max-width: $xs) {
+    width: 100%;
+  }
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}

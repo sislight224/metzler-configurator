@@ -1,0 +1,16 @@
+@import '../../../../../../../../styles/theme/config.module';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-family: MontserratRegular, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: $baseTextColor;
+}

@@ -1,0 +1,111 @@
+@import 'styles/theme/config.module';
+
+.root {
+  background-color: $surfaceColor;
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  width: 100%;
+  margin-top: 16px;
+
+  @media (max-width: $sm) {
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid $grey_200;
+    background-color: $grey_050;
+    margin-top: 0;
+  }
+}
+
+.info {
+  display: flex;
+  gap: 16px;
+}
+
+.label {
+  color: $grey;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  margin: 5px 0 0;
+
+  @media (max-width: $lg) {
+    display: none;
+  }
+
+  @media (max-width: $sm) {
+    display: block;
+  }
+
+  @media (max-width: $xxs) {
+    display: none;
+  }
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  color: $accentGreen;
+  font-family: 'MontserratBold', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+
+  @media (max-width: $lg) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.vat {
+  color: $grey;
+  font-size: 12px;
+  line-height: 14px;
+
+  @media (max-width: $lg) {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+.skeleton {
+  background: $borderColor;
+  height: 88px;
+  animation: skeleton-loading 1.5s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: $borderColor;
+    opacity: 1;
+  }
+  100% {
+    background-color: $bannerPeach;
+    opacity: .7;
+  }
+}
+

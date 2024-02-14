@@ -1,0 +1,70 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  padding: 0 16px 24px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: $borderColor;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.textHeading {
+  color: $grey_900;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.schriftartAndernContainer {
+  font-size: 16px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

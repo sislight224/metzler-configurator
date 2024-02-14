@@ -1,0 +1,72 @@
+@import '../../../../../styles/theme/config.module';
+
+.title {
+  color: $grey_900;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.input {
+  margin-bottom: 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px 24px 16px;
+}
+
+.fontContent {
+  max-height: 372px;
+  overflow-y: scroll;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $grey;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: $grey_400 transparent;
+}
+
+.styleSelection {
+  display: flex;
+  justify-content: space-between;
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_counter {
+    color: $accentGreen;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &_fontFamily {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $baseTextColor;
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

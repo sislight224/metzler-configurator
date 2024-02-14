@@ -1,0 +1,86 @@
+@import 'styles/theme/config.module';
+
+.root {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  height: 52px;
+}
+
+.range {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background: $borderColor;
+  border-radius: 100px;
+  height: 9px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.range[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  visibility: hidden;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.range[type=range]::-moz-range-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  visibility: hidden;
+}
+
+.indicatorContainer {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 9px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.markContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.mark {
+  cursor: pointer;
+  width: 12px;
+  min-height: 0;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  background: $white;
+  border: 2px solid $borderColor;
+  transition: .2s all ease;
+
+  &_active {
+    border: none;
+    background: $pine_green_800;
+  }
+}
+
+.label {
+  text-align: center;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.mark_disabled {
+  background: $borderColor;
+}

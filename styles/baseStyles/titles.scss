@@ -1,0 +1,16 @@
+@import '../theme/config.module';
+
+.primary-title {
+  font-family: $baseFontBold;
+  font-size: 18px;
+  line-height: 24px;
+  color: $grey_900;
+}
+
+.plain-text {
+  font-family: $baseFontRegular;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}

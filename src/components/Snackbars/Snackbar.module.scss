@@ -1,0 +1,44 @@
+@import '../../../styles/theme/config.module';
+
+.root {
+  max-width: 400px;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  padding: 12px 30px 12px 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+
+  &_name {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    color: $surfaceColor;
+    margin-bottom: 6px;
+  }
+
+  &_errorMessage {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: $surfaceColor;
+  }
+
+  &_closeIcon {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+}
+
+.error {
+  background: $msg_red;
+}
+
+.success {
+  background: $msg_green;
+}
+

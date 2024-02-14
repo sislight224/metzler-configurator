@@ -1,0 +1,56 @@
+@import 'styles/theme/config.module';
+
+.root {
+  z-index: 99;
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  width: 42px;
+
+  @media (max-width: $sm) {
+    left: 16px;
+    top: 147px;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+  }
+
+  @media (max-width: $xs) {
+    top: 16px;
+    right: 16px;
+    bottom: unset;
+    left: unset;
+    height: unset;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 42px;
+
+  &_hide {
+    display: flex;
+  }
+
+  @media (max-width: $xs) {
+    align-items: end;
+
+    &_hide {
+      display: none;
+    }
+  }
+}
+
+.mobileBtn {
+  display: none;
+  width: 42px;
+
+  @media (max-width: $xs) {
+    display: block;
+  }
+}

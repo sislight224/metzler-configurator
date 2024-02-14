@@ -1,0 +1,81 @@
+@import 'styles/theme/config.module';
+
+.root {
+  align-items: center;
+  background-color: $grey_050;
+  border: 1px solid $borderColor;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: 42px;
+  transition: all 0.3s;
+  width: 42px;
+
+  &:hover {
+    background-color: $pine_green_900;
+    border-color: $pine_green_900;
+  }
+
+  &_disabled {
+    &:hover {
+      background-color: $grey_050;
+      border: 1px solid $borderColor;
+    }
+  }
+
+  &_active {
+    background-color: $pine_green_900;
+    border-color: $pine_green_900;
+  }
+}
+
+.buttonBox {
+  display: flex;
+}
+
+.chevronBtn {
+  height: 42px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $grey_050;
+  border: 1px solid $borderColor;
+  width: 24px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: none;
+}
+
+.tooltip {
+  color: $white;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.skeleton {
+  background: $borderColor;
+  cursor: initial;
+  animation: skeleton-loading 1.5s linear infinite alternate;
+
+  &:hover {
+    background: $borderColor;
+    border: 1px solid transparent;
+  }
+  &:focus {
+    background: $borderColor;
+    border: 1px solid transparent;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: $borderColor;
+    opacity: 1;
+  }
+  100% {
+    background-color: $bannerPeach;
+    opacity: .7;
+  }
+}

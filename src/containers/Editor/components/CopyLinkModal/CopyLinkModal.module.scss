@@ -1,0 +1,65 @@
+@import 'styles/theme/config.module';
+
+.root {
+  padding: 40px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.configuration {
+  font-family: 'MontserratRegular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: $grey;
+  width: 100%;
+  background: $bannerGreen;
+  border-radius: 2px;
+  padding: 4px 0;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: center;
+}
+
+.linkBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 0 16px;
+  gap: 4px;
+  border: 1px solid $grey_200;
+  border-radius: 4px;
+  background: white;
+  max-width: 416px;
+}
+
+.link {
+  width: 100%;
+  outline: none;
+  border: 0;
+  font-family: 'MontserratRegular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: $grey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

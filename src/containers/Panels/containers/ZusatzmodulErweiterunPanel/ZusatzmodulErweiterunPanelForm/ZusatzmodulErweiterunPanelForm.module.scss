@@ -1,0 +1,86 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  padding: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 388px;
+
+  @media (max-width: $lg) {
+    min-height: 320px;
+  }
+
+  @media (max-width: $sm) {
+    min-height: 388px;
+  }
+
+  @media (max-width: $xxs) {
+    min-height: 320px;
+  }
+}
+
+.module {
+  margin: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview {
+  max-width: 105px;
+  max-height: 83px;
+  height: 100%;
+
+  @media (max-width: $lg) {
+    max-height: 63px;
+  }
+
+  @media (max-width: $sm) {
+    max-height: 83px;
+  }
+
+  @media (max-width: $xxs) {
+    max-height: 63px;
+  }
+}
+
+.label {
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $baseTextColor;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 170px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 170px;
+  }
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <title>Test_mailbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Put some description here - remember about SEO!">
+</head>
+
+<body>
+    <iframe id="my_iframe" src="verge_app.html"></iframe>
+    <style>
+        #my_iframe {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .button-container {
+            display: flex;
+        }
+        .button-container-el{
+            margin: 5px;
+            width: 100px;
+            height: 30px;
+            background-color: rgb(160, 160, 160);
+            color: rgb(31, 26, 26);
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+        }
+    
+
+        .slidecontainer {
+            width: 20%;
+            position: relative;
+        }
+        .slidecontainer-label {
+            position: relative;
+            margin: 5px;
+        }
+
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none;
+            /* Override default CSS styles */
+            appearance: none;
+            width: 100%;
+            /* Full-width */
+            height: 25px;
+            /* Specified height */
+            background: #d3d3d3;
+            /* Grey background */
+            outline: none;
+            /* Remove outline */
+            opacity: 0.7;
+            /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s;
+            /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #04AA6D;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #04AA6D;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+    </style>
+    <div class="button-container">
+        <div class="button-container-el" id="light_button">Light button</div>
+        <div class="button-container-el" id="camera">Camera</div>
+        <div class="button-container-el" id="RFID">RFID</div>
+        <div class="button-container-el" id="touch">Touch display</div>
+        <div class="button-container-el" id="audio">Audio</div>
+        <div class="button-container-el" id="light_on">Light on/off</div>
+        <div class="button-container-el" id="top_lable">Top lable</div>
+        <div class="button-container-el" id="cam_addon_target">Cam to addon</div>
+        <div class="button-container-el" id="zoom_in">+</div>
+        <div class="button-container-el" id="zoom_out">-</div>
+    </div>
+
+    <div class="button-container">
+        <div class="button-container-el" id="Leg_mounting">Leg mounting</div>
+        <div class="button-container-el" id="wall_mounting">Wall mounting</div>
+        <div class="button-container-el" id="screws">Screws</div>
+        <div class="button-container-el" id="addon_type">addon_type plate/engrave</div>
+        <div class="button-container-el" id="basic_type">basic_type plate/engrave</div>
+        <div class="button-container-el" id="handle_color">Handle color</div>
+        <div class="button-container-el" id="left">Top text left</div>
+        <div class="button-container-el" id="center">Top text center</div>
+        <div class="button-container-el" id="right">Top text right</div>
+        <div class="button-container-el" id="transparent">Transparent</div>
+
+    </div>
+
+        <input class="slidecontainer-label"  type="checkbox" id="addon_plates" name="vehicle4">
+        <label class="slidecontainer-label"  for="addon_plates"> Addon plates</label><br>
+        <input class="slidecontainer-label"  type="checkbox" id="addon_module" name="vehicle2">
+        <label class="slidecontainer-label"  for="addon_module"> Addon module</label><br>
+        <input class="slidecontainer-label"  type="checkbox" id="basic_plates" name="vehicle5">
+        <label class="slidecontainer-label"  for="basic_plates"> Basic plates</label><br>
+        <input class="slidecontainer-label"  type="checkbox" id="mirrored" name="vehicle1">
+        <label class="slidecontainer-label"  for="mirrored"> Mirrored</label><br>
+        <input class="slidecontainer-label"  type="checkbox" id="custom_plates_amount" name="vehicle3">
+        <label class="slidecontainer-label"  for="custom_plates_amount"> Сustom amount of plates</label><br>
+       
+
+    <div class="slider-container">
+        <label class="slidecontainer-label" for="amount">Amount</label>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="15" value="1" class="slider" id="amount">
+        </div>
+        <label class="slidecontainer-label" for="rows">Rows</label>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="3" value="1" class="slider" id="rows">
+        </div>
+        <label class="slidecontainer-label" for="plates_amount">Plates amount</label>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="15" value="1" class="slider" id="plates_amount">
+        </div>
+
+        <label class="slidecontainer-label" for="top_label">Top label text</label>
+        <div class="slidecontainer">
+            <input type="text" min="1" max="40" value="Sample text" id="top_label">
+        </div>
+
+        <label class="slidecontainer-label" for="button_color">Button color</label>
+        <div class="slidecontainer">
+            <input type="text" min="0" max="9" value="#ffffff" id="button_color">
+        </div>
+        <label class="slidecontainer-label" for="basic_module_id">Basic module id</label>
+        <div class="slidecontainer">
+            <input type="text" min="1" max="16" value="" id="basic_module_id">
+        </div>
+        <label class="slidecontainer-label" for="zoom_step">Zoom step</label>
+        <div class="slidecontainer">
+            <input type="text" min="1" max="16" value="" id="zoom_step">
+        </div>
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+@import 'styles/theme/config.module';
+
+.root {
+  z-index: 99;
+  position: absolute;
+  bottom: 32px;
+  left: calc(50% - 282px/2 - 185px);
+  display: flex;
+  gap: 48px;
+
+  .mobileBtn {
+    display: none;
+  }
+
+  @media (max-width: $sm) {
+    bottom: unset;
+    right: 16px;
+    left: unset;
+    top: 57px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: $xs) {
+    bottom: unset;
+    left: unset;
+    top: 16px;
+    right: 66px;
+    height: auto;
+    gap: 8px;
+
+    .mobileBtn {
+      display: block;
+    }
+  }
+}
+
+.controlBlock {
+  display: flex;
+  gap: 8px;
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+  }
+
+  @media (max-width: $xs) {
+    display: none;
+  }
+}
+
+.controlBlockMobile {
+  display: none;
+
+  @media (max-width: $xs) {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

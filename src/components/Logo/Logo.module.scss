@@ -1,0 +1,14 @@
+@import '../../../styles/theme/config.module';
+
+.root {
+  cursor: pointer;
+  left: 32px;
+  position: absolute;
+  z-index: 10;
+  top: 32px;
+
+  @media (max-width: $sm) {
+    left: 16px;
+    top: 16px;
+  }
+}

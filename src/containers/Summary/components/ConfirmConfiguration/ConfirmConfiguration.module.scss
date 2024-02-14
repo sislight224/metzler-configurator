@@ -1,0 +1,80 @@
+@import 'styles/theme/config.module';
+
+.root {
+  background-color: $surfaceColor;
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  width: $panelWidth;
+
+  @media (max-width: $sm) {
+    background: none;
+    border: none;
+  }
+
+  @media (max-width: $xs) {
+    width: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  gap: 16px;
+}
+
+.label {
+  color: $grey;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  margin: 5px 0 0;
+
+  @media (max-width: $xs) {
+    display: none;
+  }
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  color: $accentGreen;
+  font-family: 'MontserratBold', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.vat {
+  color: $grey;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.buttonWrap {
+  display: flex;
+  gap: 16px;
+}
+
+.modelControls {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: $xs) {
+    display: flex;
+  }
+}
+
+.list {
+  position: absolute;
+  bottom: 54px;
+
+  &_hide {
+    display: none;
+  }
+}

@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.tooltip {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: white;
+  word-break: break-all;
+}

@@ -1,0 +1,48 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  padding: 0 16px 24px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.error {
+  color: $msg_red;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.011em;
+}
+
+.module_description_block {
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  &_text {
+    color: $grey;
+  }
+
+  &_index {
+    font-weight: 600;
+    color: $accentGreen;
+  }
+
+  &_error {
+    color: $msg_red;
+  }
+}
+
+

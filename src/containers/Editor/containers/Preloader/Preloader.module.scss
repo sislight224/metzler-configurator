@@ -1,0 +1,188 @@
+@import "/styles/theme/config.module";
+
+.root {
+  position: absolute;
+  background: $white;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.root_opacity {
+  animation-name: opacity;
+  animation-duration: 2s;
+  opacity: 0;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+.stick {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: $white;
+  width: 21.48px;
+  transform: rotate(45deg);
+  filter: blur(10px);
+  height: 260px;
+  z-index: 2;
+  animation-name: move;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes move {
+  from {
+    left: 27%;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-55%, -20%);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 85px;
+  pointer-events: none;
+  flex-direction: column;
+
+  &_metzler {
+    z-index: 1;
+  }
+
+  &_mails {
+    opacity: .4;
+    z-index: 4;
+  }
+
+  .logo_img_metzler {
+    height: 50px;
+  }
+
+  .logo_img_mails {
+    width: 657px;
+  }
+}
+
+@media (max-width: $lg) {
+  .stick {
+    height: 160px;
+  }
+
+  @keyframes move {
+    from {
+      left: 25%;
+    }
+    to {
+      left: 55%;
+    }
+  }
+}
+
+@media (max-width: $sm) {
+  .logo {
+    height: 41px;
+    top: 20px;
+    left: 38%;
+    transform: translate(-30%, 0);
+    gap: 43px;
+  }
+
+  .logo_img_metzler {
+    height: 45px !important;
+  }
+
+  .logo_img_mails {
+    width: 331px !important;
+  }
+
+  .stick {
+    height: 80px;
+  }
+
+  @keyframes move {
+    from {
+      left: 25%;
+    }
+    to {
+      left: 65%;
+    }
+  }
+}
+
+@media (max-width: $xs) {
+  .logo {
+    height: 41px;
+    top: 20px;
+    left: 38%;
+    transform: translate(-30%, 0);
+    gap: 43px;
+  }
+
+  .logo_img_metzler {
+    height: 41px !important;
+  }
+
+  .logo_img_mails {
+    width: 290px !important;
+  }
+
+  .stick {
+    height: 80px;
+  }
+
+  @keyframes move {
+    from {
+      left: 25%;
+    }
+    to {
+      left: 65%;
+    }
+  }
+}
+
+
+@media (max-width: $xxs) {
+  .logo {
+    top: 20px;
+    left: 35%;
+    gap: 43px;
+    transform: (0, 0);
+  }
+
+  .logo_img_metzler {
+    height: 25px !important;
+  }
+
+  .logo_img_mails {
+    width: 222px !important;
+  }
+
+  .stick {
+    height: 60px;
+  }
+
+  @keyframes move {
+    from {
+      left: 25%;
+    }
+    to {
+      left: 75%;
+    }
+  }
+}

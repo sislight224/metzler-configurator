@@ -1,0 +1,66 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px 24px;
+}
+
+.montageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.divider {
+  height: 1px;
+  background: $borderColor;
+}
+
+.text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $baseTextColor;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mailBoxesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

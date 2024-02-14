@@ -1,0 +1,18 @@
+.root {
+  padding: 40px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: center;
+}

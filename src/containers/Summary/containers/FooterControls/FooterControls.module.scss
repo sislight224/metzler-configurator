@@ -1,0 +1,29 @@
+@import 'styles/theme/config.module';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 16px 16px 16px 32px;
+
+  @media (max-width: $sm) {
+    padding: 0 16px;
+    background: $grey_050;
+    border-top: 1px solid $grey_200;
+  }
+}
+
+.qrCodeWrapper {
+  display: none;
+}
+
+.modelControls {
+  @media (max-width: $xs) {
+    display: none;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../../../../../styles/theme/config.module';
+
+.root {
+  padding: 0 16px 24px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.switch {
+  margin-top: 3px;
+}
+
+.saveButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

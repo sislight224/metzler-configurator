@@ -1,0 +1,49 @@
+@import 'styles/theme/config.module';
+
+@mixin mixinInfoLabel {
+  font-family: 'MontserratRegular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: $grey;
+
+  @media (max-width: $lg) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  @media (max-width: $xs) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+@mixin mixinInfoValue {
+  font-family: 'MontserratMedium', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: $baseTextColor;
+
+  @media (max-width: $lg) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  @media (max-width: $xs) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

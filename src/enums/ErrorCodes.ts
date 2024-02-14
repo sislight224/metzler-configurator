@@ -1,0 +1,6 @@
+export enum ErrorCodes {
+  CONFIG_NOT_FOUND = 404,
+  CONFLICT = 1004,
+  UNEXPECTED_ERROR = 500,
+  BAD_REQUEST = 400,
+}

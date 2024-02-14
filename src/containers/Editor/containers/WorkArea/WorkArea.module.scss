@@ -1,0 +1,56 @@
+@import 'styles/theme/config.module';
+
+.root {
+  z-index: 99;
+  position: absolute;
+  height: 100%;
+  right: 12px;
+  padding: 32px 0 16px;
+  max-width: 466px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: $lg) {
+    max-width: 310px;
+  }
+
+  @media (max-width: $sm) {
+    position: absolute;
+    height: 60%;
+    bottom: 0;
+    right: 0;
+    max-width: unset;
+    padding: 32px 0 0;
+  }
+
+  @media (max-width: $xxs) {
+    padding: 21px 0 0;
+  }
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+
+  @media (max-width: $sm) {
+    margin: 0 8px 0 16px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $grey_400;
+    border-radius: 2px;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: $grey_400 transparent;
+}

@@ -1,0 +1,90 @@
+@import "styles/theme/config.module";
+
+.preview {
+  margin: 24px;
+  display: flex;
+  gap: 24px;
+
+  &_left {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 8px;
+    grid-column-gap: 8px;
+  }
+
+  &_leftPicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    border: 1px solid $borderColor;
+    transition: .2s;
+
+    &:hover {
+      border: 1px solid $accentBlue;
+      transition: .2s;
+    }
+  }
+
+  &_leftPictureActive {
+    border: 1px solid $accentBlue;
+    transition: .2s;
+  }
+
+  &_right {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+
+    > img {
+      width: 150px;
+      object-fit: contain;
+    }
+  }
+}
+
+.text {
+  overflow-y: auto;
+  height: 296px;
+  font-family: 'MontserratRegular', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  color: $baseTextColor;
+  margin: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  > p {
+    line-height: 20px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $grey;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: $grey transparent;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: $baseTextColor;
+}

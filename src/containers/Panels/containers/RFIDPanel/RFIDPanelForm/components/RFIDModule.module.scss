@@ -1,0 +1,138 @@
+@import '../../../../../../../styles/theme/config.module';
+
+@mixin mixinText {
+  color: $grey_900;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  padding-left: 8px;
+  word-break: break-all;
+}
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  &_picture {
+    height: 89px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @media (max-width: $lg) {
+    width: 54px;
+    height: 54px;
+
+    &_picture {
+      height: 50px;
+    }
+  }
+
+  @media (max-width: $sm) {
+    width: 100px;
+    height: 100px;
+
+    &_picture {
+      height: 89px;
+    }
+  }
+
+  @media (max-width: $xxs) {
+    width: 54px;
+    height: 54px;
+
+    &_picture {
+      height: 50px;
+    }
+  }
+}
+
+.module {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+
+  &_description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.text {
+  @include mixinText;
+}
+
+.price {
+  @include mixinText;
+
+  @media (max-width: $lg) {
+    display: none;
+  }
+
+  @media (max-width: $sm) {
+    display: block;
+  }
+
+  @media (max-width: $xxs) {
+    display: none;
+  }
+
+  &_alt {
+    @include mixinText;
+    display: block;
+  }
+}
+
+.input_number {
+  height: 40px;
+  width: 100px;
+
+  @media (max-width: $lg) {
+    display: none;
+  }
+
+  @media (max-width: $sm) {
+    display: block;
+  }
+
+  @media (max-width: $xxs) {
+    display: none;
+  }
+
+  &_alt {
+    display: block;
+    width: 100px !important;
+  }
+}
+
+.altLayoutRow {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: $lg) {
+    display: flex;
+  }
+
+  @media (max-width: $sm) {
+    display: none;
+  }
+
+  @media (max-width: $xxs) {
+    display: flex;
+  }
+}

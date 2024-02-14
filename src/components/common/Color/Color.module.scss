@@ -1,0 +1,23 @@
+@import 'styles/theme/config.module';
+
+.root {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 40px;
+  box-sizing: border-box;
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_active {
+    border: 2px solid $pine_green_800;
+  }
+}
+
+.root_inner {
+  width: 24px;
+  height: 24px;
+  border-radius: 40px;
+}

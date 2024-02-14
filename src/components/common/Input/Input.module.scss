@@ -1,0 +1,170 @@
+@import 'styles/theme/config.module';
+
+.root {
+  overflow: hidden;
+}
+
+.wrapper {
+  height: fit-content;
+  width: 100%;
+  position: relative;
+  border-radius: 4px;
+}
+
+.input {
+  padding: 8px 16px 8px 24px;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $baseTextColor;
+  outline: none;
+  transition: .2s;
+
+  &_prefixIcon {
+    padding-left: 44px;
+  }
+
+  &_suffixIcon {
+    padding-right: 36px;
+  }
+}
+
+.input_empty {
+  border: 1px solid $borderColor;
+}
+
+.input_default {
+  border: 1px solid $grey_400;
+}
+
+.input::placeholder {
+  color: $grey_400;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.input:active {
+  border: 1px solid $pine_green_800;
+  transition: .2s;
+}
+
+.input:focus {
+  border: 1px solid $pine_green_800;
+  transition: .2s;
+}
+
+.input:disabled {
+  border: 1px solid $grey_200;
+  background: $grey_050;
+  color: $grey;
+
+  &:active {
+    border: 1px solid $grey_200;
+  }
+}
+
+.prefixIcon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translate(0, -50%);
+  display: flex;
+
+  path {
+    stroke: $grey_900;
+  }
+}
+
+.input_error {
+  border: 1px solid $msg_red;
+}
+
+.input_error:focus {
+  border: 1px solid $msg_red;
+}
+
+.input_error:active {
+  border: 1px solid $msg_red;
+}
+
+.input_success {
+  border: 1px solid $msg_green;
+}
+
+.input_success:focus {
+  border: 1px solid $msg_green;
+}
+
+.input_success:active {
+  border: 1px solid $msg_green;
+}
+
+.hint {
+  word-wrap: break-word;
+  margin-top: 2px;
+  line-height: 18px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.hint_error {
+  color: $msg_red;
+}
+
+.hint_success {
+  color: $msg_green;
+}
+
+.suffixIcon {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 8px;
+  display: flex;
+
+  path {
+    stroke: $grey_900;
+  }
+}
+
+.suffixIcon_error {
+  path {
+    stroke: $msg_red;
+  }
+}
+
+.suffixIcon_success {
+  path {
+    stroke: $msg_green;
+  }
+}
+
+.label {
+  color: $grey_900;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 2px;
+}
+
+.disabled_prefixIcon {
+  path {
+    stroke: $background;
+  }
+}
+
+.label {
+  color: $grey_900;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 2px;
+}
+
+.disabled_suffixIcon {
+  path {
+    stroke: $background;
+  }
+}

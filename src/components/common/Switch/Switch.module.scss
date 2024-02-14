@@ -1,0 +1,350 @@
+@import 'styles/theme/config.module';
+
+.input {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.root_label_left {
+  flex-direction: row-reverse;
+}
+
+.root_label_right {
+  flex-direction: row;
+}
+
+.input:checked + .switchContainer .switchButton {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.switchContainer {
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 16px;
+  width: 32px;
+  flex-shrink: 0;
+  border-radius: 32px;
+  box-sizing: content-box;
+  border: 1px solid $borderColor;
+  position: relative;
+  transition: background-color 0.2s;
+  padding: 2px;
+  margin-right: 8px;
+
+  &_default {
+    background: $white;
+
+    &:active {
+      border: 1px solid $bannerBlue;
+      box-shadow: 0 0 0 4px rgba(49, 132, 253, 0.5);
+
+      .switchButton {
+        background: $bannerBlue;
+      }
+    }
+
+    &:focus {
+      border: 1px solid $bannerBlue;
+      box-shadow: 0 0 0 4px rgba(49, 132, 253, 0.5);
+
+      .switchButton {
+        background: $bannerBlue;
+      }
+    }
+  }
+
+  &_success {
+    border: 1px solid $accentGreen;
+
+    &:focus {
+      border: 1px solid $accentGreen;
+      box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.5);
+
+      .switchButton {
+        background: $accentGreen2;
+      }
+    }
+
+    &:active {
+      border: 1px solid $accentGreen;
+      box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.5);
+
+      .switchButton {
+        background: $accentGreen2;
+      }
+    }
+  }
+
+  &_error {
+    border: 1px solid #DC3545;
+
+    &:focus {
+      border: 1px solid #DC3545;
+      box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.5);
+
+      .switchButton {
+        background: #DC3545;
+      }
+    }
+
+    &:active {
+      border: 1px solid #DC3545;
+      box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.5);
+
+      .switchButton {
+        background: #DC3545;
+      }
+    }
+  }
+
+  &_checked_default {
+    background: $accentGreen2;
+
+    &:focus {
+      .switchButton {
+        background: $background;
+      }
+    }
+
+    &:active {
+      .switchButton {
+        background: $background;
+      }
+    }
+  }
+
+  &_checked_error {
+    background:  #DC3545;
+    border: 1px solid #DC3545;
+
+    &:active {
+      .switchButton {
+        background: $background;
+      }
+    }
+
+    &:focus {
+      .switchButton {
+        background: $background;
+      }
+    }
+  }
+
+  &_checked_success {
+    background: $accentGreen;
+    border: 1px solid $accentGreen;
+
+    &:active {
+      .switchButton {
+        background: $background;
+      }
+    }
+
+    &:focus {
+      .switchButton {
+        background: $background;
+      }
+    }
+  }
+}
+
+// disabled
+.disabled_switchContainer_default {
+  cursor: not-allowed;
+  border: 1px solid $surfaceColor;
+  background: $surfaceColor;
+  opacity: .5;
+
+  &:active {
+    border: 1px solid $surfaceColor;
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;
+    }
+  }
+
+  &:focus {
+    border: 1px solid $surfaceColor;
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;;
+    }
+  }
+}
+
+.disabled_switchContainer_checked_default {
+  cursor: not-allowed;
+  border: 1px solid $accentBlue;
+  background: $accentBlue;
+  opacity: .5;
+
+  &:active {
+    box-shadow: none;
+    border: 1px solid $accentBlue;
+    .switchButton {
+      background: $white;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    border: 1px solid $accentBlue;
+    .switchButton {
+      background: $white;
+    }
+  }
+}
+
+.disabled_switchContainer_success {
+  cursor: not-allowed;
+  opacity: .5;
+  &:active {
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;;
+    }
+  }
+}
+
+.disabled_switchContainer_checked_success {
+  cursor: not-allowed;
+  background: $accentGreen2;
+  border: 1px solid $accentGreen2;
+  opacity: .5;
+
+  &:active {
+    box-shadow: none;
+    .switchButton {
+      background: $white;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    .switchButton {
+      background: $white;
+    }
+  }
+}
+
+.disabled_switchContainer_error {
+  cursor: not-allowed;
+  opacity: .5;
+  &:active {
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    .switchButton {
+      background: $borderColor;;
+    }
+  }
+}
+
+.disabled_switchContainer_checked_error {
+  cursor: not-allowed;
+  background: #DC3545;
+  border: 1px solid #DC3545;
+  opacity: .5;
+
+  &:active {
+    box-shadow: none;
+    .switchButton {
+      background: $white;
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+    .switchButton {
+      background: $white;
+    }
+  }
+}
+
+.switchButton {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  transition: 0.2s;
+  background: $borderColor;
+  cursor: pointer;
+
+  &_checked {
+    background: $white;
+  }
+}
+
+.switchButton_disabled {
+  cursor: not-allowed;
+}
+
+// label
+.label {
+  color: $grey_900;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.label_success {
+  color: $msg_green;
+}
+
+.disabled_label_success {
+  color: $msg_green;
+  opacity: .5;
+}
+
+.disabled_label_error {
+  color: #DC3545;
+  opacity: .5;
+}
+
+.disabled_label_default {
+  color: $grey_900;
+  opacity: .5;
+}
+
+.label_error {
+  color: #DC3545;
+}
+

@@ -1,0 +1,25 @@
+@import 'styles/theme/config.module';
+
+.root {
+  display: flex;
+  gap: 8px;
+  width: 60px;
+
+  @media (max-width: $xs) {
+    flex-direction: row-reverse;
+  }
+}
+
+.menu {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  gap: 8px;
+  transition: visibility 0.3s linear,opacity 0.3s linear;
+}
+
+.menuVisible {
+  opacity: 1;
+  visibility: visible;
+}
+

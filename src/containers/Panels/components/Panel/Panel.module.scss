@@ -1,0 +1,182 @@
+@import '../../../../../styles/theme/config.module';
+
+.root {
+  width: 100% !important;
+  height: fit-content !important;
+  border: 1px solid $borderColor !important;
+  border-radius: 4px !important;
+  background: $surfaceColor !important;
+  box-shadow: none !important;
+}
+
+.root_expanded {
+  margin: 0 !important;
+}
+
+
+.header_completed {
+  background: $pine_green_050 !important;
+  transition: none;
+}
+
+.completed {
+  background: $pine_green_050;
+  transition: none;
+}
+
+// header
+
+.header {
+  padding: 0;
+  font-weight: 700;
+  font-size: 18px;
+  width: 100%;
+  line-height: 24px;
+  color: $baseTextColor;
+  cursor: pointer;
+  animation-name: opacity_header;
+  animation-duration: 3s;
+
+  @media (max-width: $lg) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (max-width: $sm) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  @media (max-width: $xxs) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &_preview {
+    cursor: default;
+    background: $pine_green_050 !important;
+    transition: none;
+  }
+
+  &_content {
+    margin: 20px 0 0 0;
+    width: 100%;
+  }
+
+  &_expanded {
+    margin: 0 !important;
+  }
+
+  &_contentBlock {
+    width: 100%;
+
+  }
+
+  &_title {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0 16px 0 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_blocked {
+    background: $borderColor !important;
+  }
+}
+
+.collapseButton {
+  display: flex;
+  align-items: center;
+  transition: all .2s ease;
+  user-select: none;
+
+  &_active {
+    transform: rotate(180deg);
+  }
+}
+
+// content summary
+
+.content {
+  padding: 0 !important;
+  width: 100%;
+  margin: 0 !important;
+  overflow: hidden;
+  transition: height .2s ease;
+  animation-name: opacity_content;
+  animation-duration: 4s;
+
+  &_block {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+// skeleton
+
+.skeleton {
+  height: 88px !important;
+  background: $borderColor;
+  animation: skeleton-loading 1.5s linear infinite alternate;
+}
+
+// animations
+
+@keyframes opacity_header {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: $borderColor;
+    opacity: 1;
+  }
+  100% {
+    background-color: $bannerPeach;
+    opacity: .7;
+  }
+}
+
+@keyframes opacity_content {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.root_enter {
+  opacity: 0;
+}
+
+.root_enterActive {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.root_enterDone {
+  opacity: 1;
+}
+
+.root_exit {
+  opacity: 1;
+}
+
+.root_exitActive {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.root_exitDone {
+  opacity: 0;
+}
+
