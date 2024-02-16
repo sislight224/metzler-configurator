@@ -83,11 +83,16 @@ const FooterControls = observer(() => {
           fetch("http://wm-dev.de/Briefkasten-BK212-Blindmodul", {
             method: "POST",
             body: formData,
-          }).then((res) => {
-            if (res.ok) {
-              window.location.href = "http://wm-dev.de/Warenkorb";
-            }
-          });
+          })
+            .then((res) => {
+              if (res.ok) {
+                // window.location.href = "http://wm-dev.de/Warenkorb";
+              }
+              return res.text();
+            })
+            .then((text) => {
+              console.log(text);
+            });
         }}
       />
     </div>
