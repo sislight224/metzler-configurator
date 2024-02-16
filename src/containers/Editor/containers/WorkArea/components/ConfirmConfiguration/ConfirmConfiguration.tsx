@@ -1,28 +1,31 @@
-import { FC, useCallback, useEffect, useMemo } from 'react';
-import Button from 'components/common/Button/Button';
-import classNames from './ConfirmConfiguration.module.scss';
-import classnames from 'classnames';
-import { useRouter } from 'next/router';
-import { observer } from 'mobx-react-lite';
+import { FC, useCallback, useEffect, useMemo } from "react";
+import Button from "components/common/Button/Button";
+import classNames from "./ConfirmConfiguration.module.scss";
+import classnames from "classnames";
+import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
 import usePanelsStore, {
   useInnestationPanelStore,
-  useKlingeltableuPanelStore, useLichttasterPanelState,
+  useKlingeltableuPanelStore,
+  useLichttasterPanelState,
   useMontagePanelStore,
-  useRFIDPanelStore, useTextleistePanelStore,
+  useRFIDPanelStore,
+  useTextleistePanelStore,
   useZusatzmodulErweiterunPanelStore,
   useZusatzmodulPanelStore,
-} from 'hooks/store/usePanelsStore';
-import { useEditorStore } from '../../../../../../hooks/store/useEditorStore';
-import { WindowId } from '../../../../../../enums/WindowId';
-import { useCalculatorStore } from '../../../../../../hooks/store/useCalculatorStore';
-import MontageType from '../../../../../../enums/data/MontageType';
-import BeschriftungNamensschild from '../../../../../../enums/data/BeschriftungNamensschild';
-import { PriceTagType } from '../../../../../../data/InnenstationModulesList';
-import { RFIDCardsEnum } from '../../../../../../stores/panels/RFIDPanelState';
-import placementRules from '../../../../../../../public/json/placement_rules.json';
+} from "hooks/store/usePanelsStore";
+import { useEditorStore } from "../../../../../../hooks/store/useEditorStore";
+import { WindowId } from "../../../../../../enums/WindowId";
+import { useCalculatorStore } from "../../../../../../hooks/store/useCalculatorStore";
+import MontageType from "../../../../../../enums/data/MontageType";
+import BeschriftungNamensschild from "../../../../../../enums/data/BeschriftungNamensschild";
+import { PriceTagType } from "../../../../../../data/InnenstationModulesList";
+import { RFIDCardsEnum } from "../../../../../../stores/panels/RFIDPanelState";
+import placementRules from "../../../../../../../public/json/placement_rules.json";
 
 export const ConfirmConfiguration: FC = observer(() => {
-  const { canSaveConfiguration, configId, isEditConfig, setActiveWindowId } = usePanelsStore();
+  const { canSaveConfiguration, configId, isEditConfig, setActiveWindowId } =
+    usePanelsStore();
   const { isInitialize, setPreview, isLoadingPreview } = useEditorStore();
   const router = useRouter();
 
@@ -31,17 +34,11 @@ export const ConfirmConfiguration: FC = observer(() => {
   // todo: need refactoring
 
   const {
-    state: {
-      montageType,
-      mailBoxesCount,
-    },
+    state: { montageType, mailBoxesCount },
   } = useMontagePanelStore();
 
   const {
-    state: {
-      mailBoxesRanksCount,
-      zusatzmodulType,
-    },
+    state: { mailBoxesRanksCount, zusatzmodulType },
   } = useZusatzmodulPanelStore();
 
   const {
@@ -56,93 +53,112 @@ export const ConfirmConfiguration: FC = observer(() => {
   } = useKlingeltableuPanelStore();
 
   const {
-    state: {
-      zusatzmodulErweiterung,
-    },
+    state: { zusatzmodulErweiterung },
   } = useZusatzmodulErweiterunPanelStore();
 
   const {
-    state: {
-      hintergrundbeleuchtungIsEnabled,
-      beschriftungOberhalbIsEnabled,
-    },
+    state: { hintergrundbeleuchtungIsEnabled, beschriftungOberhalbIsEnabled },
   } = useTextleistePanelStore();
 
   const {
-    state: {
-      innestationsModulesCount,
-    },
+    state: { innestationsModulesCount },
   } = useInnestationPanelStore();
 
   const {
-    state: {
-      RFIDCard,
-    },
+    state: { RFIDCard },
   } = useRFIDPanelStore();
 
-  const {
-    countPriceOptions,
-  } = useCalculatorStore();
+  const { countPriceOptions } = useCalculatorStore();
 
   const {
     state: { isLight },
   } = useLichttasterPanelState();
 
   const getHoleModules = useCallback(() => {
-    const addonModule = zusatzmodulType.value !== 'ohne' && zusatzmodulType.value !== 'klingetableu' ? 'addon_module' : 'no_addon_module';
+    const addonModule =
+      zusatzmodulType.value !== "ohne" &&
+      zusatzmodulType.value !== "klingetableu"
+        ? "addon_module"
+        : "no_addon_module";
     const allRows = placementRules[addonModule];
-    const rows = allRows[(`${mailBoxesRanksCount}-${mailBoxesCount}`) as keyof typeof allRows];
+    const rows =
+      allRows[
+        `${mailBoxesRanksCount}-${mailBoxesCount}` as keyof typeof allRows
+      ];
     return [rows.row_1, rows.row_2, rows.row_3]
       .flat(1)
-      .filter((item) => item === 'P').length;
+      .filter((item) => item === "P").length;
   }, [zusatzmodulType, mailBoxesRanksCount, mailBoxesCount]);
 
-  const getInnenstationCount = useCallback((code: PriceTagType) => {
-    return innestationsModulesCount.find((value) => value.priceTag === code)?.value ?? 0;
-  }, [innestationsModulesCount]);
+  const getInnenstationCount = useCallback(
+    (code: PriceTagType) => {
+      return (
+        innestationsModulesCount.find((value) => value.priceTag === code)
+          ?.value ?? 0
+      );
+    },
+    [innestationsModulesCount]
+  );
 
   useEffect(() => {
-    countPriceOptions('Montage', {
+    countPriceOptions("Montage", {
       einbetonieren: montageType === MontageType.EINBETONIEREN ? 1 : 0,
       aufputz: montageType === MontageType.WANDMONTAGE ? 1 : 0,
       anschrauben: montageType === MontageType.ANSCHRAUBEN ? 1 : 0,
     });
 
-    countPriceOptions('BriefkastenModule', {
+    countPriceOptions("BriefkastenModule", {
       blindModules: getHoleModules(),
       briefcastenModules: mailBoxesCount,
     });
   }, [mailBoxesCount, montageType, zusatzmodulType, mailBoxesRanksCount]);
 
   useEffect(() => {
-    countPriceOptions('ZusatzErweiterung', {
+    countPriceOptions("ZusatzErweiterung", {
       ohne: 0,
-      Klingelanlagene: zusatzmodulType.value === 'klingetableu' ? 1 : 0,
-      Videogegensprechmodul: zusatzmodulType.value === 'videoGegensprechmodul' ? 1 : 0,
-      AudioGegensprechmodul: zusatzmodulType.value === 'audioGegensprechmodul' ? 1 : 0,
+      Klingelanlagene: zusatzmodulType.value === "klingetableu" ? 1 : 0,
+      Videogegensprechmodul:
+        zusatzmodulType.value === "videoGegensprechmodul" ? 1 : 0,
+      AudioGegensprechmodul:
+        zusatzmodulType.value === "audioGegensprechmodul" ? 1 : 0,
     });
   }, [zusatzmodulType]);
 
   useEffect(() => {
-    const isKlingOnZusatPanel = zusatzmodulType.value !== 'ohne';
+    const isKlingOnZusatPanel = zusatzmodulType.value !== "ohne";
 
-    const isTouchDisplay = zusatzmodulErweiterung.value === 'touch_display'
-      || zusatzmodulErweiterung.value === 'klingetaster_touchDisplay';
+    const isTouchDisplay =
+      zusatzmodulErweiterung.value === "touch_display" ||
+      zusatzmodulErweiterung.value === "klingetaster_touchDisplay";
 
-    const isKlingeltaster = zusatzmodulErweiterung.value === 'klingetaster_rfid'
-      || zusatzmodulErweiterung.value === 'klingetaster_touchDisplay' || zusatzmodulErweiterung.value === 'klingetaster';
+    const isKlingeltaster =
+      zusatzmodulErweiterung.value === "klingetaster_rfid" ||
+      zusatzmodulErweiterung.value === "klingetaster_touchDisplay" ||
+      zusatzmodulErweiterung.value === "klingetaster";
 
-    const klingCount = (klingIsCompleted && klingIsActive) || (klingIsCompleted || klingIsActive) ? klingeltasterCount : 0;
+    const klingCount =
+      (klingIsCompleted && klingIsActive) || klingIsCompleted || klingIsActive
+        ? klingeltasterCount
+        : 0;
 
-    countPriceOptions('ZusatzModule', {
-      RFID: zusatzmodulErweiterung.value === 'klingetaster_rfid' ? 1 : 0,
+    countPriceOptions("ZusatzModule", {
+      RFID: zusatzmodulErweiterung.value === "klingetaster_rfid" ? 1 : 0,
       TouchDisplay: isTouchDisplay ? 1 : 0,
-      Klingeltaster: isKlingeltaster && isKlingOnZusatPanel ? klingeltasterCount : 0,
-      NamensschildmitGravur: beschriftungNamensschild === BeschriftungNamensschild.NAMENSSCHILD_MIT_GRAVUR
-        ? klingCount : 0,
-      EinsteckschildmitPapiereinleger: beschriftungNamensschild === BeschriftungNamensschild.EINSTECKSCHILD_MIT_PAPIEREINLEGER
-        ? klingCount : 0,
-      NamensschildmitBeleuchtung: namensschildBeleuchtungEnabled ? klingCount : 0,
+      Klingeltaster:
+        isKlingeltaster && isKlingOnZusatPanel ? klingeltasterCount : 0,
+      NamensschildmitGravur:
+        beschriftungNamensschild ===
+        BeschriftungNamensschild.NAMENSSCHILD_MIT_GRAVUR
+          ? klingCount
+          : 0,
+      EinsteckschildmitPapiereinleger:
+        beschriftungNamensschild ===
+        BeschriftungNamensschild.EINSTECKSCHILD_MIT_PAPIEREINLEGER
+          ? klingCount
+          : 0,
+      NamensschildmitBeleuchtung: namensschildBeleuchtungEnabled
+        ? klingCount
+        : 0,
       Lichttaster: lichttasterEnabled || isLight ? 1 : 0,
     });
   }, [
@@ -154,34 +170,48 @@ export const ConfirmConfiguration: FC = observer(() => {
     beschriftungNamensschild,
     zusatzmodulErweiterung,
     klingIsActive,
-    klingIsCompleted]);
+    klingIsCompleted,
+  ]);
 
   useEffect(() => {
-    countPriceOptions('InnenstationLANPOE', {
-      InnenstationHomeWeibLanPoe: getInnenstationCount('InnenstationHomeWeibLanPoe'),
-      InnenstationHomeSchwarzLanPoe: getInnenstationCount('InnenstationHomeSchwarzLanPoe'),
-      InnenstationUltraSchwarz: getInnenstationCount('InnenstationUltraSchwarz'),
-      InnenstationProGrau: getInnenstationCount('InnenstationProGrau'),
-      InnenstationProSchwarzRose: getInnenstationCount('InnenstationProSchwarzRose'),
+    countPriceOptions("InnenstationLANPOE", {
+      InnenstationHomeWeibLanPoe: getInnenstationCount(
+        "InnenstationHomeWeibLanPoe"
+      ),
+      InnenstationHomeSchwarzLanPoe: getInnenstationCount(
+        "InnenstationHomeSchwarzLanPoe"
+      ),
+      InnenstationUltraSchwarz: getInnenstationCount(
+        "InnenstationUltraSchwarz"
+      ),
+      InnenstationProGrau: getInnenstationCount("InnenstationProGrau"),
+      InnenstationProSchwarzRose: getInnenstationCount(
+        "InnenstationProSchwarzRose"
+      ),
     });
 
-    countPriceOptions('InnenstationDraht', {
-      InnenstationHomeWeibDraht: getInnenstationCount('InnenstationHomeWeibDraht'),
-      InnenstationHomeSchwarzDraht: getInnenstationCount('InnenstationHomeSchwarzDraht'),
+    countPriceOptions("InnenstationDraht", {
+      InnenstationHomeWeibDraht: getInnenstationCount(
+        "InnenstationHomeWeibDraht"
+      ),
+      InnenstationHomeSchwarzDraht: getInnenstationCount(
+        "InnenstationHomeSchwarzDraht"
+      ),
     });
   }, [getInnenstationCount]);
 
   useEffect(() => {
-    countPriceOptions('RFID', {
+    countPriceOptions("RFID", {
       regularCard: RFIDCard[RFIDCardsEnum.REGULAR]?.countModule ?? 0,
-      exclusiveCard: RFIDCard[RFIDCardsEnum.SCHLUSSELANHANGER]?.countModule ?? 0,
+      exclusiveCard:
+        RFIDCard[RFIDCardsEnum.SCHLUSSELANHANGER]?.countModule ?? 0,
     });
 
-    countPriceOptions('Deckel', {
+    countPriceOptions("Deckel", {
       deckel: 1,
     });
 
-    countPriceOptions('Textleiste', {
+    countPriceOptions("Textleiste", {
       textleiste: beschriftungOberhalbIsEnabled ? 1 : 0,
       led: hintergrundbeleuchtungIsEnabled ? 1 : 0,
     });
@@ -194,7 +224,10 @@ export const ConfirmConfiguration: FC = observer(() => {
 
   const saveClickHandler = useCallback(() => {
     if (!canSaveConfiguration) return;
-    router.replace({ pathname: '/summary', query: { uuid: configId } });
+    router.replace({
+      pathname: "/summary",
+      query: { uuid: configId, ...router.query },
+    });
     setPreview();
   }, [canSaveConfiguration, configId]);
 
@@ -207,33 +240,37 @@ export const ConfirmConfiguration: FC = observer(() => {
   }, []);
 
   return (
-    <div className={classnames(classNames.root, { [classNames.skeleton]: !isInitialize })}>
-      {isInitialize && <>
-        <div className={classNames.info}>
-          <div className={classNames.label}>Gesamt</div>
-          <div className={classNames.value}>
-            <span className={classNames.price}>
-              {priceConfiguration.toFixed(2)}
-              {' '}
-              €
-            </span>
-            <span className={classNames.vat}>Inkl. 19% MwSt.</span>
+    <div
+      className={classnames(classNames.root, {
+        [classNames.skeleton]: !isInitialize,
+      })}
+    >
+      {isInitialize && (
+        <>
+          <div className={classNames.info}>
+            <div className={classNames.label}>Gesamt</div>
+            <div className={classNames.value}>
+              <span className={classNames.price}>
+                {priceConfiguration.toFixed(2)} €
+              </span>
+              <span className={classNames.vat}>Inkl. 19% MwSt.</span>
+            </div>
           </div>
-        </div>
-        <div className={classNames.buttonWrap}>
-          {isEditConfig && <Button
-            label="Bestätigen"
-            width="140px"
-            onClick={saveClickHandler}
-            disabled={disabledButtonConfiguration}
-          />}
-          {!isEditConfig && <Button
-            label="Edit"
-            width="70px"
-            onClick={editClickHandler}
-          />}
-        </div>
-      </>}
+          <div className={classNames.buttonWrap}>
+            {isEditConfig && (
+              <Button
+                label="Bestätigen"
+                width="140px"
+                onClick={saveClickHandler}
+                disabled={disabledButtonConfiguration}
+              />
+            )}
+            {!isEditConfig && (
+              <Button label="Edit" width="70px" onClick={editClickHandler} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 });
