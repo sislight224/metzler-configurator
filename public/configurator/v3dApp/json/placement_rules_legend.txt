@@ -1,0 +1,3 @@
+A - Addon module
+B - Basic module
+P - Placeholder
