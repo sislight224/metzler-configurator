@@ -5,5 +5,5 @@ export type EnvConfigType = {
 
 export const envConfig: EnvConfigType = {
   apiBaseUrl: process.env.NEXT_PUBLIC_API_URL,
-  apiBasePrefix: process.env.NEXT_PUBLIC_API_PREFIX,
+  apiBasePrefix: `/configutrator/${process.env.NEXT_PUBLIC_API_PREFIX}`,
 };

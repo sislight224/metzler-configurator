@@ -21,7 +21,7 @@ import MontageType from "../../../../../../enums/data/MontageType";
 import BeschriftungNamensschild from "../../../../../../enums/data/BeschriftungNamensschild";
 import { PriceTagType } from "../../../../../../data/InnenstationModulesList";
 import { RFIDCardsEnum } from "../../../../../../stores/panels/RFIDPanelState";
-import placementRules from "../../../../../../../public/json/placement_rules.json";
+import placementRules from "../../../../../../../public/configurator/json/placement_rules.json";
 
 export const ConfirmConfiguration: FC = observer(() => {
   const { canSaveConfiguration, configId, isEditConfig, setActiveWindowId } =

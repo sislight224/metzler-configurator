@@ -1,5 +1,10 @@
-import axios, { AxiosError } from 'axios';
-import { onRequestError, onRequestPrepare, onResponseError, onResponsePrepare } from './interceptors';
+import axios, { AxiosError } from "axios";
+import {
+  onRequestError,
+  onRequestPrepare,
+  onResponseError,
+  onResponsePrepare,
+} from "./interceptors";
 
 export type ApiRequestError = AxiosError<{
   code: number;
@@ -8,10 +13,10 @@ export type ApiRequestError = AxiosError<{
 }>;
 
 export const instance = axios.create({
-  baseURL: `/${process.env.NEXT_PUBLIC_API_PREFIX}`,
+  baseURL: `/configurator/${process.env.NEXT_PUBLIC_API_PREFIX}`,
   withCredentials: true,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 

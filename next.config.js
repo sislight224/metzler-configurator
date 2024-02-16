@@ -12,7 +12,7 @@ const nextConfig = {
       destination: `http://3.137.23.97:8000/v1/:endpoint*`,
     },
   ],
-
+  basePath: "/configurator",
   swcMinify: true,
   reactStrictMode: false,
   eslint: {
