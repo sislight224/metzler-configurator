@@ -86,7 +86,7 @@ const FooterControls = observer(() => {
           })
             .then((res) => {
               if (res.ok) {
-                // window.location.href = "http://wm-dev.de/Warenkorb";
+                window.location.href = "http://wm-dev.de/Warenkorb";
               }
               return res.text();
             })
