@@ -16637,7 +16637,7 @@ function createPL(v3d = window.v3d) {
         function () {
           _JSON_placement_rules = _pGlob.loadedFile;
           loadFile(
-            "./json/fonts.json",
+            "./configurator/json/fonts.json",
             function () {
               _JSON_font_path = _pGlob.loadedFile;
               changeVis(
@@ -18931,9 +18931,9 @@ function createPL(v3d = window.v3d) {
           "\n" +
           "}" +
           "\n" +
-          "let width = VARS.ONE_BOX_WIDTH * VARS._place_configuration.row_1.length;" +
+          "let width = VARS.ONE_BOX_WIDTH * VARS._place_configuration.row_1?.length;" +
           "\n" +
-          "VARS.calculated_width = VARS._place_configuration.row_1.length * 390;" +
+          "VARS.calculated_width = VARS._place_configuration.row_1?.length * 390;" +
           "\n" +
           "" +
           "\n" +
