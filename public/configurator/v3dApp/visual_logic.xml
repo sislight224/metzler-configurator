@@ -16,7 +16,7 @@
       <mutation xmlns="http://www.w3.org/1999/xhtml" disablecaching="false"></mutation>
       <value name="URL">
         <shadow type="text" id="pkP4Z!iBgZD#)r;Wy~Qh">
-          <field name="TEXT">./json/fonts.json</field>
+          <field name="TEXT">./configurator/json/fonts.json</field>
         </shadow>
       </value>
       <statement name="DO">

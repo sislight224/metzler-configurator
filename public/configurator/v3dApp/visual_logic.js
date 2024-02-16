@@ -16637,7 +16637,7 @@ function createPL(v3d = window.v3d) {
         function () {
           _JSON_placement_rules = _pGlob.loadedFile;
           loadFile(
-            "./json/fonts.json",
+            "./configurator/json/fonts.json",
             function () {
               _JSON_font_path = _pGlob.loadedFile;
               changeVis(
