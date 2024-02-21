@@ -19,6 +19,22 @@ const montage = {
   },
 };
 
+const briefkasten = {
+  "Einsteckschild mit Papiereinleger": {
+    url: "Briefkasten-BK212-mit-austauschbarem-Namensschild",
+    id: 2,
+  },
+  "Namensschild mit Gravur": {
+    url: "Briefkasten-BK212-mit-graviertem-Namensschild",
+    id: 3,
+  },
+};
+
+const blindModule = {
+  url: "Briefkasten-BK212-Blindmodul",
+  id: 10,
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -57,9 +73,15 @@ const FooterControls = observer(() => {
       <ConfirmConfiguration
         onConfirm={async () => {
           const states = getAllStates();
-          console.log({ states: states.montage.montageType });
+          console.log(states);
           const montageProduct = montage[states.montage.montageType];
+          const briefcaseAmount = states.montage["mailBoxesCount"];
+          const rowAmount = states.zusatzmodule["mailBoxesRanksCount"];
+          const blindModuleAmount = briefcaseAmount % rowAmount;
+          const briefkastenType = states.briefkasten.briefkasteType;
+
           let products = [];
+
           if (montageProduct) {
             products.push({
               url: montageProduct.url,
@@ -67,6 +89,24 @@ const FooterControls = observer(() => {
               id: montageProduct.id,
             });
           }
+
+          if (briefcaseAmount > 0) {
+            products.push({
+              url: briefkasten[briefkastenType].url,
+              amount: briefcaseAmount,
+              id: briefkasten[briefkastenType].id,
+            });
+          }
+
+          if (blindModuleAmount > 0) {
+            products.push({
+              url: blindModule.url,
+              amount: blindModuleAmount,
+              id: blindModule.id,
+            });
+          }
+
+          console.log(products);
 
           function getFormData(id: number, amount: number = 1) {
             const formData = new FormData();
