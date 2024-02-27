@@ -35,6 +35,44 @@ const blindModule = {
   id: 10,
 };
 
+const zusatzmodule = {
+  Klingelanlage: {
+    url: "Hauptmodul-BK212-Klingeltableau-mit-austauschbaren-Namensschildern",
+    id: 4,
+  },
+  "Video Gegensprechmodul": {
+    url: "Hauptmodul-BK212-Videomodul-mit-austauschbaren-Namensschildern",
+    id: 6,
+  },
+  "Audio Gegensprechmodul": {
+    url: "Hauptmodul-BK212-Audiomodul-mit-austauschbaren-Namensschildern",
+    id: 8,
+  },
+};
+
+const klingertaster = {
+  Gelb: {
+    url: "Klingeltaster-A19mm-mit-gelber-LED-Beleuchtung",
+    id: 17,
+  },
+  Rot: {
+    url: "Klingeltaster-A19mm-mit-roter-LED-Beleuchtung",
+    id: 14,
+  },
+  Weiß: {
+    url: "Klingeltaster-A19mm-mit-weiAYer-LED-Beleuchtung",
+    id: 13,
+  },
+  Blau: {
+    url: "Klingeltaster-A19mm-mit-blauer-LED-Beleuchtung",
+    id: 16,
+  },
+  Grün: {
+    url: "Klingeltaster-A19mm-mit-grAner-LED-Beleuchtung",
+    id: 15,
+  },
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -77,10 +115,43 @@ const FooterControls = observer(() => {
           const montageProduct = montage[states.montage.montageType];
           const briefcaseAmount = states.montage["mailBoxesCount"];
           const rowAmount = states.zusatzmodule["mailBoxesRanksCount"];
-          const blindModuleAmount = briefcaseAmount % rowAmount;
+
+          const zuzatsModuleType = states.zusatzmodule.zusatzmodulType.title;
+          const blindModuleAmount =
+            briefcaseAmount % (rowAmount + zuzatsModuleType !== "Ohne" ? 1 : 0);
           const briefkastenType = states.briefkasten.briefkasteType;
 
+          const klingeltasterCount = states.klingelanlage.klingeltasterCount;
+          const beleuchtungColor = states.klingelanlage.beleuchtungColor;
+
+          const namensschildBeleuchtungEnabled =
+            states.klingelanlage.namensschildBeleuchtungEnabled;
+
           let products = [];
+
+          if (klingeltasterCount > 0) {
+            products.push({
+              url: klingertaster[beleuchtungColor].url,
+              amount: klingeltasterCount,
+              id: klingertaster[beleuchtungColor].id,
+            });
+          }
+
+          if (namensschildBeleuchtungEnabled) {
+            products.push({
+              url: "Namensschild-LED-Beleuchtung",
+              amount: klingeltasterCount,
+              id: 20,
+            });
+          }
+
+          if (zuzatsModuleType !== "Ohne") {
+            products.push({
+              url: zusatzmodule[zuzatsModuleType].url,
+              amount: 1,
+              id: zusatzmodule[zuzatsModuleType].id,
+            });
+          }
 
           if (montageProduct) {
             products.push({
