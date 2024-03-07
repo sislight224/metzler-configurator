@@ -73,6 +73,29 @@ const klingertaster = {
   },
 };
 
+const innenstation = {
+  "Metzler VDM10 2.0 Innenstation Home, weiß": {
+    url: "Metzler-VDM10-20-Innenstation-Home-weiAY",
+    id: "30",
+  },
+  "Metzler VDM10 2.0 Innenstation Home, schwarz": {
+    url: "Metzler-VDM10-20-Innenstation-Home-schwarz",
+    id: "31",
+  },
+  "Metzler VDM10 2.0 Innenstation Ultra, schwarz": {
+    url: "Metzler-VDM10-20-Innenstation-Ultra-schwarz",
+    id: "32",
+  },
+  "Metzler VDM10 2.0 Innenstation Pro, grau": {
+    url: "Metzler-VDM10-20-Innenstation-Pro-grau",
+    id: "33",
+  },
+  "Metzler VDM10 2.0 Innenstation Pro, schwarz - rose": {
+    url: "Metzler-VDM10-20-Innenstation-Pro-schwarz-rose",
+    id: "34",
+  },
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -127,6 +150,11 @@ const FooterControls = observer(() => {
           const namensschildBeleuchtungEnabled =
             states.klingelanlage.namensschildBeleuchtungEnabled;
 
+          const innenstationItems =
+            states.innenstation.innestationsModulesCount.filter(
+              (item: any) => item.value > 0
+            );
+
           let products = [];
 
           if (klingeltasterCount > 0) {
@@ -174,6 +202,14 @@ const FooterControls = observer(() => {
               url: blindModule.url,
               amount: blindModuleAmount,
               id: blindModule.id,
+            });
+          }
+
+          for (const item of innenstationItems) {
+            products.push({
+              url: innenstation[item.moduleName].url,
+              amount: item.value,
+              id: innenstation[item.moduleName].id,
             });
           }
 
