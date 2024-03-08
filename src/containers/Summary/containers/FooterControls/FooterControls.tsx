@@ -343,7 +343,12 @@ const FooterControls = observer(() => {
           }
 
           const fetches = products.map((product) => {
-            const formData = getFormData(product.id, product.amount);
+            const formData = getFormData(
+              product.id,
+              product.amount,
+              product.extraFields ?? []
+            );
+            console.log(Object.fromEntries(formData.entries()));
             return fetch(`http://wm-dev.de/${product.url}`, {
               method: "POST",
               body: formData,
