@@ -124,6 +124,34 @@ const innenstation = {
   },
 };
 
+const lichttaster = {
+  url: "Lichttaster",
+  id: 29,
+};
+
+const namensschild = {
+  "Einsteckschild mit Papiereinleger": {
+    url: "Namensschild-mit-Papiereinleger",
+    id: 19,
+  },
+  // FIX
+  "Namensschild mit Gravur": {
+    url: "Namensschild-mit-Papiereinleger",
+    id: 19,
+  },
+};
+
+const zusatzmodulExtension = {
+  "Klingeltaster & RFID": {
+    url: "RFID",
+    id: 28,
+  },
+  "Klingeltaster & Touch Display": {
+    url: "VDM10-IPS-Touch-Display-Module",
+    id: 12,
+  },
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -168,12 +196,18 @@ const FooterControls = observer(() => {
           const rowAmount = states.zusatzmodule["mailBoxesRanksCount"];
 
           const zuzatsModuleType = states.zusatzmodule.zusatzmodulType.title;
+
+          const zusatzmodulErweiterun =
+            states.zusatzmodulErweiterun.zusatzmodulErweiterung.title;
+
           const blindModuleAmount =
             briefcaseAmount % (rowAmount + zuzatsModuleType !== "Ohne" ? 1 : 0);
           const briefkastenType = states.briefkasten.briefkasteType;
 
           const klingeltasterCount = states.klingelanlage.klingeltasterCount;
           const beleuchtungColor = states.klingelanlage.beleuchtungColor;
+
+          const lichtTasterEnabled = states.klingelanlage.lichttasterEnabled;
 
           const namensschildBeleuchtungEnabled =
             states.klingelanlage.namensschildBeleuchtungEnabled;
@@ -187,6 +221,14 @@ const FooterControls = observer(() => {
             );
 
           let products = [];
+
+          if (lichtTasterEnabled) {
+            products.push({
+              url: lichttaster.url,
+              amount: 1,
+              id: lichttaster.id,
+            });
+          }
 
           if (klingeltasterCount > 0) {
             products.push({
@@ -217,6 +259,16 @@ const FooterControls = observer(() => {
                 id: zusatzmodule[klingelanlageType]["Klingelanlage"].id,
               });
             }
+            if (
+              zusatzmodulErweiterun === "Klingeltaster & RFID" ||
+              zusatzmodulErweiterun === "Klingeltaster & Touch Display"
+            ) {
+              products.push({
+                url: zusatzmodulExtension[zusatzmodulErweiterun].url,
+                amount: 1,
+                id: zusatzmodulExtension[zusatzmodulErweiterun].id,
+              });
+            }
           }
 
           if (montageProduct) {
@@ -232,6 +284,14 @@ const FooterControls = observer(() => {
               url: briefkasten[briefkastenType].url,
               amount: briefcaseAmount,
               id: briefkasten[briefkastenType].id,
+            });
+            products.push({
+              url: namensschild[briefkastenType].url,
+              amount:
+                zuzatsModuleType !== "Ohne"
+                  ? briefcaseAmount * 2
+                  : briefcaseAmount,
+              id: namensschild[briefkastenType].id,
             });
           }
 
@@ -289,3 +349,10 @@ const FooterControls = observer(() => {
 });
 
 export default FooterControls;
+
+const x = {
+  mongoDbUri:
+    "mongodb+srv://altudev:Z1G4Y0cq84ngrwIr@cluster0.496ve.mongodb.net/Recruiter?retryWrites=true&w=majority",
+  jobDetailId: "65670a39171fa05c63e23f4f",
+  kind: "RECRUITER_LEAD_GEN",
+};
