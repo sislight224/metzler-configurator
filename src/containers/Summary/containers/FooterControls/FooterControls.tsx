@@ -36,17 +36,33 @@ const blindModule = {
 };
 
 const zusatzmodule = {
-  Klingelanlage: {
-    url: "Hauptmodul-BK212-Klingeltableau-mit-austauschbaren-Namensschildern",
-    id: 4,
+  "einsteckschild_mit_papiereinleger ": {
+    Klingelanlage: {
+      url: "Hauptmodul-BK212-Klingeltableau-mit-austauschbaren-Namensschildern",
+      id: 4,
+    },
+    "Video Gegensprechmodul": {
+      url: "Hauptmodul-BK212-Videomodul-mit-austauschbaren-Namensschildern",
+      id: 6,
+    },
+    "Audio Gegensprechmodul": {
+      url: "Hauptmodul-BK212-Audiomodul-mit-austauschbaren-Namensschildern",
+      id: 8,
+    },
   },
-  "Video Gegensprechmodul": {
-    url: "Hauptmodul-BK212-Videomodul-mit-austauschbaren-Namensschildern",
-    id: 6,
-  },
-  "Audio Gegensprechmodul": {
-    url: "Hauptmodul-BK212-Audiomodul-mit-austauschbaren-Namensschildern",
-    id: 8,
+  namensschild_mit_gravur: {
+    Klingelanlage: {
+      url: "Hauptmodul-BK212-Klingeltableau-mit-gravierten-Namensschildern",
+      id: 5,
+    },
+    "Video Gegensprechmodul": {
+      url: "Hauptmodul-BK212-Videomodul-mit-gravierten-Namensschildern",
+      id: 7,
+    },
+    "Audio Gegensprechmodul": {
+      url: "Hauptmodul-BK212-Audiomodul-mit-gravierten-Namensschildern",
+      id: 9,
+    },
   },
 };
 
@@ -74,25 +90,37 @@ const klingertaster = {
 };
 
 const innenstation = {
-  "Metzler VDM10 2.0 Innenstation Home, weiß": {
-    url: "Metzler-VDM10-20-Innenstation-Home-weiAY",
-    id: "30",
+  "LAN/PoE IP": {
+    "Metzler VDM10 2.0 Innenstation Home, weiß": {
+      url: "Metzler-VDM10-20-Innenstation-Home-weiAY",
+      id: "30",
+    },
+    "Metzler VDM10 2.0 Innenstation Home, schwarz": {
+      url: "Metzler-VDM10-20-Innenstation-Home-schwarz",
+      id: "31",
+    },
+    "Metzler VDM10 2.0 Innenstation Ultra, schwarz": {
+      url: "Metzler-VDM10-20-Innenstation-Ultra-schwarz",
+      id: "32",
+    },
+    "Metzler VDM10 2.0 Innenstation Pro, grau": {
+      url: "Metzler-VDM10-20-Innenstation-Pro-grau",
+      id: "33",
+    },
+    "Metzler VDM10 2.0 Innenstation Pro, schwarz - rose": {
+      url: "Metzler-VDM10-20-Innenstation-Pro-schwarz-rose",
+      id: "34",
+    },
   },
-  "Metzler VDM10 2.0 Innenstation Home, schwarz": {
-    url: "Metzler-VDM10-20-Innenstation-Home-schwarz",
-    id: "31",
-  },
-  "Metzler VDM10 2.0 Innenstation Ultra, schwarz": {
-    url: "Metzler-VDM10-20-Innenstation-Ultra-schwarz",
-    id: "32",
-  },
-  "Metzler VDM10 2.0 Innenstation Pro, grau": {
-    url: "Metzler-VDM10-20-Innenstation-Pro-grau",
-    id: "33",
-  },
-  "Metzler VDM10 2.0 Innenstation Pro, schwarz - rose": {
-    url: "Metzler-VDM10-20-Innenstation-Pro-schwarz-rose",
-    id: "34",
+  "2-Draht IP": {
+    "Metzler VDM10 2.0 Innenstation Home, weiß": {
+      url: "Metzler-VDM10-20-Innenstation-Home-weiAY_1",
+      id: "35",
+    },
+    "Metzler VDM10 2.0 Innenstation Home, schwarz": {
+      url: "Metzler-VDM10-20-Innenstation-Home-schwarz_1",
+      id: "36",
+    },
   },
 };
 
@@ -150,6 +178,9 @@ const FooterControls = observer(() => {
           const namensschildBeleuchtungEnabled =
             states.klingelanlage.namensschildBeleuchtungEnabled;
 
+          const klingelanlageType =
+            states.klingelanlage.beschriftungNamensschild;
+
           const innenstationItems =
             states.innenstation.innestationsModulesCount.filter(
               (item: any) => item.value > 0
@@ -175,10 +206,17 @@ const FooterControls = observer(() => {
 
           if (zuzatsModuleType !== "Ohne") {
             products.push({
-              url: zusatzmodule[zuzatsModuleType].url,
+              url: zusatzmodule[klingelanlageType][zuzatsModuleType].url,
               amount: 1,
-              id: zusatzmodule[zuzatsModuleType].id,
+              id: zusatzmodule[klingelanlageType][zuzatsModuleType].id,
             });
+            if (zuzatsModuleType !== "Klingelanlage") {
+              products.push({
+                url: zusatzmodule[klingelanlageType]["Klingelanlage"].url,
+                amount: 1,
+                id: zusatzmodule[klingelanlageType]["Klingelanlage"].id,
+              });
+            }
           }
 
           if (montageProduct) {
@@ -207,9 +245,9 @@ const FooterControls = observer(() => {
 
           for (const item of innenstationItems) {
             products.push({
-              url: innenstation[item.moduleName].url,
+              url: innenstation[item.connectionType][item.moduleName].url,
               amount: item.value,
-              id: innenstation[item.moduleName].id,
+              id: innenstation[item.connectionType][item.moduleName].id,
             });
           }
 
