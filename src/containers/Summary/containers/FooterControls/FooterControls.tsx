@@ -284,6 +284,13 @@ const FooterControls = observer(() => {
               url: briefkasten[briefkastenType].url,
               amount: briefcaseAmount,
               id: briefkasten[briefkastenType].id,
+              extraFields:
+                briefkastenType === "Namensschild mit Gravur"
+                  ? states.briefkasten.namensschildList.map((item) => [
+                      `eigenschaftwert[${item.id}]`,
+                      item.value,
+                    ])
+                  : [],
             });
             products.push({
               url: namensschild[briefkastenType].url,
@@ -312,8 +319,13 @@ const FooterControls = observer(() => {
           }
 
           console.log(products);
+          return;
 
-          function getFormData(id: number, amount: number = 1) {
+          function getFormData(
+            id: number,
+            amount: number = 1,
+            extraFields: [string, string][] = []
+          ) {
             const formData = new FormData();
             formData.append("jtl_token", String(router.query["jtl-token"]));
             formData.append("wlPos", "0");
@@ -325,6 +337,9 @@ const FooterControls = observer(() => {
             formData.append("kSprache", "1");
             formData.append("anzahl", amount.toString());
             formData.append("inWarenkorb", "In den Warenkorb");
+            for (const [field, value] of extraFields) {
+              formData.append(field, value);
+            }
             return formData;
           }
 
@@ -338,9 +353,7 @@ const FooterControls = observer(() => {
 
           const result = await Promise.all(fetches);
 
-          setTimeout(() => {
-            window.location.href = `http://wm-dev.de/Warenkorb`;
-          }, 2000);
+          window.location.href = `http://wm-dev.de/Warenkorb`;
           console.log(result);
         }}
       />
