@@ -349,10 +349,3 @@ const FooterControls = observer(() => {
 });
 
 export default FooterControls;
-
-const x = {
-  mongoDbUri:
-    "mongodb+srv://altudev:Z1G4Y0cq84ngrwIr@cluster0.496ve.mongodb.net/Recruiter?retryWrites=true&w=majority",
-  jobDetailId: "65670a39171fa05c63e23f4f",
-  kind: "RECRUITER_LEAD_GEN",
-};
