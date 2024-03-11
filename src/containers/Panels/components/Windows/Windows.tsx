@@ -1,23 +1,28 @@
-import { FC, useCallback } from 'react';
-import { observer } from 'mobx-react-lite';
+import { FC, useCallback } from "react";
+import { observer } from "mobx-react-lite";
 import usePanelsStore, {
   useBriefkastenPanelStore,
   useInnestationPanelStore,
-  useKlingeltableuPanelStore, useMontagePanelStore,
-} from '../../../../hooks/store/usePanelsStore';
-import { WindowId } from '../../../../enums/WindowId';
-import InnestationModal from '../InnestationModal/InnestationModal';
-import SchriftartModal from '../SchriftartModal/SchriftartModal';
-import { fontsFamilyList } from '../../../../data/FontsFamilyList';
-import PanelId from '../../../../enums/PanelId';
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import EditableModal from '../../../Editor/components/EditableModal/EditableModal';
-import ResetConfigurationModal from '../../../Editor/components/ResetConfigurationModal/ResetConfigurationModal';
-import { useUndoRedoStore } from '../../../../hooks/store/useUndoRedoStore';
-import { innenstationModulesList } from '../../../../data/InnenstationModulesList';
+  useKlingeltableuPanelStore,
+  useMontagePanelStore,
+} from "../../../../hooks/store/usePanelsStore";
+import { WindowId } from "../../../../enums/WindowId";
+import InnestationModal from "../InnestationModal/InnestationModal";
+import SchriftartModal from "../SchriftartModal/SchriftartModal";
+import { fontsFamilyList } from "../../../../data/FontsFamilyList";
+import PanelId from "../../../../enums/PanelId";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import EditableModal from "../../../Editor/components/EditableModal/EditableModal";
+import ResetConfigurationModal from "../../../Editor/components/ResetConfigurationModal/ResetConfigurationModal";
+import { useUndoRedoStore } from "../../../../hooks/store/useUndoRedoStore";
+import { innenstationModulesList } from "../../../../data/InnenstationModulesList";
+import BackToShopModal from "containers/Editor/components/BackToShopModal/BackToShopModal";
 
-const CopyLinkModal = dynamic(() => import('../../../Editor/components/CopyLinkModal/CopyLinkModal'), { ssr: false });
+const CopyLinkModal = dynamic(
+  () => import("../../../Editor/components/CopyLinkModal/CopyLinkModal"),
+  { ssr: false }
+);
 
 const Windows: FC = observer(() => {
   const router = useRouter();
@@ -28,16 +33,21 @@ const Windows: FC = observer(() => {
 
   const { addStateRecord } = useUndoRedoStore();
 
-  const { activeWindowId, setActiveWindowId, activePanelId, remixConfig } = usePanelsStore();
-
-  const { state: { setSchriftart: setSchriftartBriefkasten } } = useBriefkastenPanelStore();
-  const { state: { setSchriftart: setSchriftartKlingeltableu } } = useKlingeltableuPanelStore();
-
-  const { state: { activeInnenstationViewModuleIndex } } = useInnestationPanelStore();
+  const { activeWindowId, setActiveWindowId, activePanelId, remixConfig } =
+    usePanelsStore();
 
   const {
-    resetState,
-  } = useUndoRedoStore();
+    state: { setSchriftart: setSchriftartBriefkasten },
+  } = useBriefkastenPanelStore();
+  const {
+    state: { setSchriftart: setSchriftartKlingeltableu },
+  } = useKlingeltableuPanelStore();
+
+  const {
+    state: { activeInnenstationViewModuleIndex },
+  } = useInnestationPanelStore();
+
+  const { resetState } = useUndoRedoStore();
 
   const changeIsOpenInnerstationModalHandler = useCallback((value: boolean) => {
     if (!value) setActiveWindowId(null);
@@ -49,18 +59,21 @@ const Windows: FC = observer(() => {
     else setActiveWindowId(WindowId.SCHRIFTART_MODAL);
   }, []);
 
-  const changeFontHandler = useCallback((fontName: string, fontNumber: number) => {
-    if (activePanelId === PanelId.KLINGETABLEU) {
-      addStateRecord();
-      setSchriftartKlingeltableu(fontName, fontNumber);
-      setSchriftartBriefkasten(fontName, fontNumber);
-    }
-    if (activePanelId === PanelId.BRIEFKASTEN) {
-      addStateRecord();
-      setSchriftartBriefkasten(fontName, fontNumber);
-    }
-    setActiveWindowId(null);
-  }, [activeWindowId]);
+  const changeFontHandler = useCallback(
+    (fontName: string, fontNumber: number) => {
+      if (activePanelId === PanelId.KLINGETABLEU) {
+        addStateRecord();
+        setSchriftartKlingeltableu(fontName, fontNumber);
+        setSchriftartBriefkasten(fontName, fontNumber);
+      }
+      if (activePanelId === PanelId.BRIEFKASTEN) {
+        addStateRecord();
+        setSchriftartBriefkasten(fontName, fontNumber);
+      }
+      setActiveWindowId(null);
+    },
+    [activeWindowId]
+  );
 
   const closeModal = useCallback(() => {
     setActiveWindowId(null);
@@ -72,11 +85,10 @@ const Windows: FC = observer(() => {
 
   const editConfigClickHandler = useCallback(() => {
     const uuid = query.uuid as string;
-    remixConfig(uuid as string)
-      .then((remixResponse) => {
-        router.replace({ query: { uuid: remixResponse.id } });
-        setActiveWindowId(null);
-      });
+    remixConfig(uuid as string).then((remixResponse) => {
+      router.replace({ query: { uuid: remixResponse.id } });
+      setActiveWindowId(null);
+    });
   }, []);
 
   const resetToDefaultHandler = useCallback(() => {
@@ -86,10 +98,11 @@ const Windows: FC = observer(() => {
     setIsCompleted(false);
     resetState();
     setActiveWindowId(null);
-    router.push('/');
+    router.push("/");
   }, []);
 
-  const currentInnestationModule = innenstationModulesList[activeInnenstationViewModuleIndex];
+  const currentInnestationModule =
+    innenstationModulesList[activeInnenstationViewModuleIndex];
 
   return (
     <>
@@ -101,7 +114,9 @@ const Windows: FC = observer(() => {
       <InnestationModal
         description={currentInnestationModule.description}
         activeInnenstationViewModuleIndex={activeInnenstationViewModuleIndex}
-        innenstationViewModules={currentInnestationModule.previewForDescription ?? []}
+        innenstationViewModules={
+          currentInnestationModule.previewForDescription ?? []
+        }
         title={currentInnestationModule.moduleName}
         onChangeIsOpen={changeIsOpenInnerstationModalHandler}
         isOpen={activeWindowId === WindowId.INNESTATION_VIEW}
@@ -122,6 +137,12 @@ const Windows: FC = observer(() => {
       />
       <ResetConfigurationModal
         isOpen={activeWindowId === WindowId.RESET_CONFIGURATION_MODAL}
+        onCancelClick={closeModal}
+        onClose={closeModal}
+        onResetToDefaultClick={resetToDefaultHandler}
+      />
+      <BackToShopModal
+        isOpen={activeWindowId === WindowId.BACK_TO_SHOP_MODAL}
         onCancelClick={closeModal}
         onClose={closeModal}
         onResetToDefaultClick={resetToDefaultHandler}

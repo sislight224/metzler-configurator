@@ -11,6 +11,9 @@ import { OrderStatus } from "../../enums/data/OrderStatus";
 import { AxiosError } from "axios";
 import { ErrorCodes } from "../../enums/ErrorCodes";
 import Preloader from "./containers/Preloader/Preloader";
+import Modal from "components/common/Modal";
+import Content from "components/common/Modal/Content";
+import { Button } from "@mui/base";
 
 const WorkArea = dynamic(() => import("./containers/WorkArea/WorkArea"), {
   ssr: false,
@@ -90,6 +93,20 @@ const Editor: FC = observer(() => {
       <WorkArea />
       <SupportingToolbar />
       <Controls />
+      <Modal width="450px" isOpen={false}>
+        <Content>
+          <div className={styles.root}>
+            <div className={styles.controls}>
+              <Button label="Abbrechen" onClick={() => {}} />
+              <Button
+                label="Bearbeiten"
+                colorScheme="white-outlined"
+                onClick={() => console.log("success")}
+              />
+            </div>
+          </div>
+        </Content>
+      </Modal>
     </div>
   );
 });
