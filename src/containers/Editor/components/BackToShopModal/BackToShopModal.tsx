@@ -38,7 +38,7 @@ const BackToShopModal: FC<ResetConfigurationModalProps> = memo((props) => {
               label="Zurücksetzen"
               colorScheme="white-outlined"
               onClick={() => {
-                window.location.href = window.location.host;
+                window.location.href = `${window.location.origin}`;
               }}
             />
           </div>
