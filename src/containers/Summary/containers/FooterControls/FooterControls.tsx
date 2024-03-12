@@ -361,14 +361,16 @@ const FooterControls = observer(() => {
           }
 
           if (
-            rfidCard.regular.countModule + rfidCard.exclusive.countModule >
+            rfidCard.regular.countModule +
+              (rfidCard.exclusive?.countModule ?? 0) >
             0
           ) {
             products.push({
               url: rfid.card.url,
               id: rfid.card.id,
               amount:
-                rfidCard.regular.countModule + rfidCard.exclusive.countModule,
+                rfidCard.regular.countModule +
+                (rfidCard.exclusive?.countModule ?? 0),
             });
           }
 
