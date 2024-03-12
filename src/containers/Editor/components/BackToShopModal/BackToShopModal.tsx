@@ -30,12 +30,13 @@ const BackToShopModal: FC<ResetConfigurationModalProps> = memo((props) => {
       <Content>
         <div className={styles.root}>
           <div className={cn("primary-title", styles.title)}>
-            You are about to leave the editor. Are you sure you want to leave?
+            Ihre Konfiguration wird beim verlassen des Konfigurators nicht
+            gespeichert. Wollen Sie zum Shop zurück?
           </div>
           <div className={styles.controls}>
             <Button label="Abbrechen" onClick={cancelClickHandler} />
             <Button
-              label="Zurücksetzen"
+              label="Zum Shop"
               colorScheme="white-outlined"
               onClick={() => {
                 window.location.href = `${window.location.origin}`;

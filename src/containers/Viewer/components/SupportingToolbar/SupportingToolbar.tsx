@@ -78,7 +78,7 @@ export const SupportingToolbar: FC = observer(() => {
           />
           <IconButton
             iconName="home"
-            tooltipText="Zuruck zum shop"
+            tooltipText="Zurück zum Shop"
             enableTooltip
             onClick={() => setActiveWindowId(WindowId.BACK_TO_SHOP_MODAL)}
           />
