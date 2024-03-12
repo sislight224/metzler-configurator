@@ -152,6 +152,17 @@ const zusatzmodulExtension = {
   },
 };
 
+const rfid = {
+  hanger: {
+    url: "Metzler-VDM10-SchlAsselanhAnger-RFID-Leder",
+    id: 38,
+  },
+  card: {
+    url: "Metzler-VDM10-RFID-Karte-Anthrazit",
+    id: 37,
+  },
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -219,6 +230,8 @@ const FooterControls = observer(() => {
             states.innenstation.innestationsModulesCount.filter(
               (item: any) => item.value > 0
             );
+
+          const rfidCard = states.rfid.RFIDCard;
 
           let products = [];
 
@@ -315,6 +328,26 @@ const FooterControls = observer(() => {
               url: innenstation[item.connectionType][item.moduleName].url,
               amount: item.value,
               id: innenstation[item.connectionType][item.moduleName].id,
+            });
+          }
+
+          if (rfidCard.schlusselanhanger.countModule > 0) {
+            products.push({
+              url: rfid.hanger.url,
+              id: rfid.hanger.id,
+              amount: rfidCard.schlusselanhanger.countModule,
+            });
+          }
+
+          if (
+            rfidCard.regular.countModule + rfidCard.exclusive.countModule >
+            0
+          ) {
+            products.push({
+              url: rfid.card.url,
+              id: rfid.card.id,
+              amount:
+                rfidCard.regular.countModule + rfidCard.exclusive.countModule,
             });
           }
 
