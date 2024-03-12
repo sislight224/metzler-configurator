@@ -134,10 +134,9 @@ const namensschild = {
     url: "Namensschild-mit-Papiereinleger",
     id: 19,
   },
-  // FIX
   "Namensschild mit Gravur": {
-    url: "Namensschild-mit-Papiereinleger",
-    id: 19,
+    url: "Edelstahl-Namensschild-mit-individueller-Gravur",
+    id: 18,
   },
 };
 
@@ -161,6 +160,26 @@ const rfid = {
     url: "Metzler-VDM10-RFID-Karte-Anthrazit",
     id: 37,
   },
+};
+
+const Text3D = {
+  mitte: {
+    url: "3D-Textleiste",
+    id: "39",
+  },
+  links: {
+    url: "3D-Textleiste",
+    id: "39",
+  },
+  rechts: {
+    url: "3D-Textleiste",
+    id: "39",
+  },
+};
+
+const Text3DLed = {
+  url: "Led-Hintergrundbeleuchtung",
+  id: "40",
 };
 
 const FooterControls = observer(() => {
@@ -232,6 +251,8 @@ const FooterControls = observer(() => {
             );
 
           const rfidCard = states.rfid.RFIDCard;
+
+          const textleiste = states.textleiste;
 
           let products = [];
 
@@ -351,6 +372,21 @@ const FooterControls = observer(() => {
             });
           }
 
+          if (textleiste.isCompleted) {
+            products.push({
+              url: Text3D[textleiste.textausrichtung].url,
+              id: Text3D[textleiste.textausrichtung].id,
+              amount: 1,
+            });
+          }
+
+          if (textleiste.hintergrundbeleuchtungIsEnabled) {
+            products.push({
+              url: Text3DLed.url,
+              id: Text3DLed.id,
+              amount: 1,
+            });
+          }
           console.log(products);
 
           function getFormData(
