@@ -168,12 +168,23 @@ const Text3D = {
     id: "39",
   },
   links: {
-    url: "3D-Textleiste",
-    id: "39",
+    url: "3D-Textleiste-Links-Ja",
+    id: "44",
   },
   rechts: {
-    url: "3D-Textleiste",
-    id: "39",
+    url: "3D-Textleiste-Rechts-Ja",
+    id: "46",
+  },
+};
+
+const modulePosition = {
+  rechts: {
+    url: "Modulposition-rechts",
+    id: "48",
+  },
+  links: {
+    url: "Modulposition-links",
+    id: "47",
   },
 };
 
@@ -226,6 +237,7 @@ const FooterControls = observer(() => {
           const rowAmount = states.zusatzmodule["mailBoxesRanksCount"];
 
           const zuzatsModuleType = states.zusatzmodule.zusatzmodulType.title;
+          const zusatzModulePosition = states.zusatzmodule.zusatzmodulPosition;
 
           const zusatzmodulErweiterun =
             states.zusatzmodulErweiterun.zusatzmodulErweiterung.title;
@@ -305,6 +317,14 @@ const FooterControls = observer(() => {
             }
           }
 
+          if (zusatzModulePosition) {
+            products.push({
+              url: modulePosition[zusatzModulePosition].url,
+              amount: 1,
+              id: modulePosition[zusatzModulePosition].id,
+            });
+          }
+
           if (montageProduct) {
             products.push({
               url: montageProduct.url,
@@ -376,10 +396,17 @@ const FooterControls = observer(() => {
 
           if (textleiste.isCompleted) {
             products.push({
-              url: Text3D[textleiste.textausrichtung].url,
+              url: Text3D["mitte"].url,
               id: Text3D[textleiste.textausrichtung].id,
               amount: 1,
             });
+            if (textleiste.textausrichtung !== "mitte") {
+              products.push({
+                url: Text3D[textleiste.textausrichtung].url,
+                id: Text3D[textleiste.textausrichtung].id,
+                amount: 1,
+              });
+            }
           }
 
           if (textleiste.hintergrundbeleuchtungIsEnabled) {
@@ -390,6 +417,7 @@ const FooterControls = observer(() => {
             });
           }
           console.log(products);
+          return;
 
           function getFormData(
             id: number,
