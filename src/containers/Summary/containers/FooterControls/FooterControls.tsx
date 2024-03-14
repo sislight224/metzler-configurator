@@ -417,7 +417,6 @@ const FooterControls = observer(() => {
             });
           }
           console.log(products);
-          return;
 
           function getFormData(
             id: number,
