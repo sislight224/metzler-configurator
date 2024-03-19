@@ -193,6 +193,27 @@ const Text3DLed = {
   id: "40",
 };
 
+const TEXT_3D_EXTRAFIELD = "eigenschaftwert[16]";
+
+const fontIds = {
+  "0": "50",
+  "1": "51",
+  "2": "52",
+  "3": "53",
+  "4": "54",
+  "5": "55",
+  "6": "56",
+  "7": "57",
+  "8": "58",
+  "9": "59",
+  "10": "60",
+  "12": "61",
+  "15": "62",
+  "16": "63",
+  "17": "64",
+  "18": "65",
+};
+
 const FooterControls = observer(() => {
   const {
     orderPanelsConfig,
@@ -298,6 +319,19 @@ const FooterControls = observer(() => {
               amount: 1,
               id: zusatzmodule[klingelanlageType][zuzatsModuleType].id,
             });
+            if (klingelanlageType === "namensschild_mit_gravur") {
+              const fontId = states.klingelanlage.schriftart.replace(
+                "Schriftart",
+                ""
+              );
+              if (fontId !== "" && !Number.isNaN(Number(fontId))) {
+                products.push({
+                  url: `Schriftart-${fontId}`,
+                  amount: 1,
+                  id: fontIds[fontId],
+                });
+              }
+            }
             if (zuzatsModuleType !== "Klingelanlage") {
               products.push({
                 url: zusatzmodule[klingelanlageType]["Klingelanlage"].url,
@@ -399,6 +433,9 @@ const FooterControls = observer(() => {
               url: Text3D["mitte"].url,
               id: Text3D[textleiste.textausrichtung].id,
               amount: 1,
+              extraFields: textleiste.beschriftung
+                ? [TEXT_3D_EXTRAFIELD, textleiste.beschriftung]
+                : [],
             });
             if (textleiste.textausrichtung !== "mitte") {
               products.push({
