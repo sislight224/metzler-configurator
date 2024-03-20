@@ -431,7 +431,7 @@ const FooterControls = observer(() => {
           if (textleiste.isCompleted) {
             products.push({
               url: Text3D["mitte"].url,
-              id: Text3D[textleiste.textausrichtung].id,
+              id: Text3D["mitte"].id,
               amount: 1,
               extraFields: textleiste.beschriftung
                 ? [TEXT_3D_EXTRAFIELD, textleiste.beschriftung]
@@ -453,7 +453,6 @@ const FooterControls = observer(() => {
               amount: 1,
             });
           }
-          console.log(products);
 
           function getFormData(
             id: number,
