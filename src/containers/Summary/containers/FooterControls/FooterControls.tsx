@@ -457,7 +457,7 @@ const FooterControls = observer(() => {
               id: Text3D["mitte"].id,
               amount: 1,
               extraFields: textleiste.beschriftung
-                ? [TEXT_3D_EXTRAFIELD, textleiste.beschriftung]
+                ? [[TEXT_3D_EXTRAFIELD, textleiste.beschriftung]]
                 : [],
             });
             if (textleiste.textausrichtung !== "mitte") {
