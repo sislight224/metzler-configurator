@@ -54,14 +54,27 @@ const zusatzmodule = {
     Klingelanlage: {
       url: "Hauptmodul-BK212-Klingeltableau-mit-gravierten-Namensschildern",
       id: 5,
+      // from 48
     },
     "Video Gegensprechmodul": {
       url: "Hauptmodul-BK212-Videomodul-mit-gravierten-Namensschildern",
       id: 7,
+      // from 33
     },
     "Audio Gegensprechmodul": {
       url: "Hauptmodul-BK212-Audiomodul-mit-gravierten-Namensschildern",
       id: 9,
+      // from 18
+    },
+  },
+};
+
+const extraFields = {
+  klingelanlage: {
+    namensschild_mit_gravur: {
+      Klingelanlage: 48,
+      "Video Gegensprechmodul": 33,
+      "Audio Gegensprechmodul": 18,
     },
   },
 };
@@ -314,10 +327,20 @@ const FooterControls = observer(() => {
           }
 
           if (zuzatsModuleType !== "Ohne") {
+            const extraFieldIndex =
+              extraFields?.klingelanlage?.[klingelanlageType][
+                zuzatsModuleType
+              ] ?? 0;
             products.push({
               url: zusatzmodule[klingelanlageType][zuzatsModuleType].url,
               amount: 1,
               id: zusatzmodule[klingelanlageType][zuzatsModuleType].id,
+              extraFields: states.klingelanlage.namensschildList.map(
+                (item, index) => [
+                  `eigenschaftwert[${extraFieldIndex + index}]`,
+                  item.value,
+                ]
+              ),
             });
             if (klingelanlageType === "namensschild_mit_gravur") {
               const fontId = states.klingelanlage.schriftart.replace(
@@ -453,6 +476,8 @@ const FooterControls = observer(() => {
               amount: 1,
             });
           }
+
+          console.log(products);
 
           function getFormData(
             id: number,
