@@ -150,6 +150,7 @@ const namensschild = {
   "Namensschild mit Gravur": {
     url: "Edelstahl-Namensschild-mit-individueller-Gravur",
     id: 18,
+    extraFieldId: 62,
   },
 };
 
@@ -356,10 +357,20 @@ const FooterControls = observer(() => {
               }
             }
             if (zuzatsModuleType !== "Klingelanlage") {
+              const extraFieldIndex =
+                extraFields.klingelanlage.namensschild_mit_gravur[
+                  "Klingelanlage"
+                ];
               products.push({
                 url: zusatzmodule[klingelanlageType]["Klingelanlage"].url,
                 amount: 1,
                 id: zusatzmodule[klingelanlageType]["Klingelanlage"].id,
+                extraFields: states.klingelanlage.namensschildList.map(
+                  (item, index) => [
+                    `eigenschaftwert[${extraFieldIndex + index}]`,
+                    item.value,
+                  ]
+                ),
               });
             }
             if (
@@ -410,6 +421,14 @@ const FooterControls = observer(() => {
                   ? briefcaseAmount * 2
                   : briefcaseAmount,
               id: namensschild[briefkastenType].id,
+              extraFields: states.briefkasten.namensschildList.map(
+                (item, index) => [
+                  `eigenschaftwert[${
+                    namensschild[briefkastenType].extraFieldId + index
+                  }]`,
+                  item.value,
+                ]
+              ),
             });
           }
 
