@@ -209,6 +209,29 @@ const Text3DLed = {
 
 const TEXT_3D_EXTRAFIELD = "eigenschaftwert[16]";
 
+const deckel = {
+  [`1`]: {
+    url: "Deckel-fAr-1-Briefkasten",
+    id: 23,
+  },
+  [`2`]: {
+    url: "Deckel-fAr-2-Briefkasten",
+    id: 24,
+  },
+  [`3`]: {
+    url: "Deckel-fAr-3-Briefkasten",
+    id: 25,
+  },
+  [`4`]: {
+    url: "Deckel-fAr-4-Briefkasten",
+    id: 26,
+  },
+  [`5`]: {
+    url: "Deckel-fAr-5-Birefkasten",
+    id: 27,
+  },
+};
+
 const fontIds = {
   "0": "50",
   "1": "51",
@@ -279,6 +302,11 @@ const FooterControls = observer(() => {
 
           const blindModuleAmount =
             briefcaseAmount % (rowAmount + zuzatsModuleType !== "Ohne" ? 1 : 0);
+
+          const totalItems = briefcaseAmount + blindModuleAmount;
+          const itemsPerRow = Math.ceil(totalItems / rowAmount);
+          const deckelAmount = Math.ceil(totalItems / itemsPerRow);
+
           const briefkastenType = states.briefkasten.briefkasteType;
 
           const klingeltasterCount = states.klingelanlage.klingeltasterCount;
@@ -302,6 +330,14 @@ const FooterControls = observer(() => {
           const textleiste = states.textleiste;
 
           let products = [];
+
+          if (deckelAmount > 1) {
+            products.push({
+              url: deckel[itemsPerRow].url,
+              amount: deckelAmount,
+              id: deckel[itemsPerRow].id,
+            });
+          }
 
           if (lichtTasterEnabled) {
             products.push({
