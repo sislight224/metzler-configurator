@@ -7,64 +7,62 @@ import { useAppSnackbar } from "../../../../hooks/useAppSnackbar";
 import ModelControls from "../ModelControls/ModelControls";
 import { useUndoRedoStore } from "../../../../hooks/store/useUndoRedoStore";
 import { useRouter } from "next/router";
+import { config } from "./config";
 
 const montage = {
   "Freistehend mit Standfuß zum Einbetonieren": {
     url: "Erweiterung-des-StandfuAYes-zum-Einbetonieren",
-    id: 22,
+    id: 37862,
   },
   "Freistehend mit Standfuß zum Anschrauben": {
     url: "StandfuAY-zum-Anschrauben",
-    id: 21,
+    id: 37859,
   },
 };
 
 const briefkasten = {
   "Einsteckschild mit Papiereinleger": {
     url: "Briefkasten-BK212-mit-austauschbarem-Namensschild",
-    id: 2,
+    id: 35224,
   },
   "Namensschild mit Gravur": {
     url: "Briefkasten-BK212-mit-graviertem-Namensschild",
-    id: 3,
+    id: 35225,
   },
 };
 
 const blindModule = {
   url: "Briefkasten-BK212-Blindmodul",
-  id: 10,
+  id: 37875,
 };
 
 const zusatzmodule = {
   "einsteckschild_mit_papiereinleger ": {
     Klingelanlage: {
       url: "Hauptmodul-BK212-Klingeltableau-mit-austauschbaren-Namensschildern",
-      id: 4,
+      id: 40096,
     },
     "Video Gegensprechmodul": {
       url: "Hauptmodul-BK212-Videomodul-mit-austauschbaren-Namensschildern",
-      id: 6,
+      id: 40097,
     },
     "Audio Gegensprechmodul": {
       url: "Hauptmodul-BK212-Audiomodul-mit-austauschbaren-Namensschildern",
-      id: 8,
+      id: 40098,
     },
   },
   namensschild_mit_gravur: {
     Klingelanlage: {
       url: "Hauptmodul-BK212-Klingeltableau-mit-gravierten-Namensschildern",
       id: 5,
-      // from 48
     },
     "Video Gegensprechmodul": {
       url: "Hauptmodul-BK212-Videomodul-mit-gravierten-Namensschildern",
       id: 7,
-      // from 33
     },
     "Audio Gegensprechmodul": {
       url: "Hauptmodul-BK212-Audiomodul-mit-gravierten-Namensschildern",
       id: 9,
-      // from 18
     },
   },
 };
@@ -82,23 +80,23 @@ const extraFields = {
 const klingertaster = {
   Gelb: {
     url: "Klingeltaster-A19mm-mit-gelber-LED-Beleuchtung",
-    id: 17,
+    id: 5014,
   },
   Rot: {
     url: "Klingeltaster-A19mm-mit-roter-LED-Beleuchtung",
-    id: 14,
+    id: 5012,
   },
   Weiß: {
     url: "Klingeltaster-A19mm-mit-weiAYer-LED-Beleuchtung",
-    id: 13,
+    id: 5010,
   },
   Blau: {
     url: "Klingeltaster-A19mm-mit-blauer-LED-Beleuchtung",
-    id: 16,
+    id: 5011,
   },
   Grün: {
     url: "Klingeltaster-A19mm-mit-grAner-LED-Beleuchtung",
-    id: 15,
+    id: 5013,
   },
 };
 
@@ -106,50 +104,50 @@ const innenstation = {
   "LAN/PoE IP": {
     "Metzler VDM10 2.0 Innenstation Home, weiß": {
       url: "Metzler-VDM10-20-Innenstation-Home-weiAY",
-      id: "30",
+      id: 29384,
     },
     "Metzler VDM10 2.0 Innenstation Home, schwarz": {
       url: "Metzler-VDM10-20-Innenstation-Home-schwarz",
-      id: "31",
+      id: 30646,
     },
     "Metzler VDM10 2.0 Innenstation Ultra, schwarz": {
       url: "Metzler-VDM10-20-Innenstation-Ultra-schwarz",
-      id: "32",
+      id: 29407,
     },
     "Metzler VDM10 2.0 Innenstation Pro, grau": {
       url: "Metzler-VDM10-20-Innenstation-Pro-grau",
-      id: "33",
+      id: 31197,
     },
     "Metzler VDM10 2.0 Innenstation Pro, schwarz - rose": {
       url: "Metzler-VDM10-20-Innenstation-Pro-schwarz-rose",
-      id: "34",
+      id: 31196,
     },
   },
   "2-Draht IP": {
     "Metzler VDM10 2.0 Innenstation Home, weiß": {
       url: "Metzler-VDM10-20-Innenstation-Home-weiAY_1",
-      id: "35",
+      id: 37817,
     },
     "Metzler VDM10 2.0 Innenstation Home, schwarz": {
       url: "Metzler-VDM10-20-Innenstation-Home-schwarz_1",
-      id: "36",
+      id: 37820,
     },
   },
 };
 
 const lichttaster = {
   url: "Lichttaster",
-  id: 29,
+  id: 40101,
 };
 
 const namensschild = {
   "Einsteckschild mit Papiereinleger": {
     url: "Namensschild-mit-Papiereinleger",
-    id: 19,
+    id: 40099,
   },
   "Namensschild mit Gravur": {
     url: "Edelstahl-Namensschild-mit-individueller-Gravur",
-    id: 18,
+    id: 12544,
     extraFieldId: 62,
   },
 };
@@ -157,37 +155,37 @@ const namensschild = {
 const zusatzmodulExtension = {
   "Klingeltaster & RFID": {
     url: "RFID",
-    id: 28,
+    id: 30664,
   },
   "Klingeltaster & Touch Display": {
     url: "VDM10-IPS-Touch-Display-Module",
-    id: 12,
+    id: 36119,
   },
 };
 
 const rfid = {
   hanger: {
     url: "Metzler-VDM10-SchlAsselanhAnger-RFID-Leder",
-    id: 38,
+    id: 35729,
   },
   card: {
     url: "Metzler-VDM10-RFID-Karte-Anthrazit",
-    id: 37,
+    id: 35164,
   },
 };
 
 const Text3D = {
   mitte: {
     url: "3D-Textleiste",
-    id: "39",
+    id: 40108,
   },
   links: {
     url: "3D-Textleiste-Links-Ja",
-    id: "44",
+    id: 40108,
   },
   rechts: {
     url: "3D-Textleiste-Rechts-Ja",
-    id: "46",
+    id: 40108,
   },
 };
 
@@ -204,7 +202,7 @@ const modulePosition = {
 
 const Text3DLed = {
   url: "Led-Hintergrundbeleuchtung",
-  id: "40",
+  id: 40109,
 };
 
 const TEXT_3D_EXTRAFIELD = "eigenschaftwert[16]";
@@ -212,23 +210,23 @@ const TEXT_3D_EXTRAFIELD = "eigenschaftwert[16]";
 const deckel = {
   [`1`]: {
     url: "Deckel-fAr-1-Briefkasten",
-    id: 23,
+    id: 40103,
   },
   [`2`]: {
     url: "Deckel-fAr-2-Briefkasten",
-    id: 24,
+    id: 40104,
   },
   [`3`]: {
     url: "Deckel-fAr-3-Briefkasten",
-    id: 25,
+    id: 40105,
   },
   [`4`]: {
     url: "Deckel-fAr-4-Briefkasten",
-    id: 26,
+    id: 40106,
   },
   [`5`]: {
     url: "Deckel-fAr-5-Birefkasten",
-    id: 27,
+    id: 40107,
   },
 };
 
@@ -252,34 +250,9 @@ const fontIds = {
 };
 
 const FooterControls = observer(() => {
-  const {
-    orderPanelsConfig,
-    configId,
-    setIsOrderConfig,
-    getState,
-    activePanelId,
-    getAllStates,
-  } = usePanelsStore();
-
-  const { enqueueErrorSnackbar } = useAppSnackbar({
-    defaultErrorMessage: "",
-  });
+  const { getAllStates } = usePanelsStore();
 
   const router = useRouter();
-
-  const { cleanUndoRedo } = useUndoRedoStore();
-
-  const confirmConfigurationHandler = useCallback(() => {
-    /* orderPanelsConfig(configId)
-     *   .then(() => {
-     *     setIsOrderConfig(true);
-     *     cleanUndoRedo();
-     *     alert("Order placed");
-     *   })
-     *   .catch((error) => {
-     *     enqueueErrorSnackbar(error.message);
-     *   }); */
-  }, [configId]);
 
   return (
     <div className={styles.root}>
@@ -379,6 +352,7 @@ const FooterControls = observer(() => {
                 ]
               ),
             });
+
             if (klingelanlageType === "namensschild_mit_gravur") {
               const fontId = states.klingelanlage.schriftart.replace(
                 "Schriftart",
@@ -532,47 +506,20 @@ const FooterControls = observer(() => {
             });
           }
 
-          console.log(products);
+          await fetch("/configurator/api/checkout", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              products,
+              jtlToken: localStorage.getItem("jtlToken"),
+            }),
+          })
+            .then((res) => res.json())
+            .then(console.log);
 
-          function getFormData(
-            id: number,
-            amount: number = 1,
-            extraFields: [string, string][] = []
-          ) {
-            const formData = new FormData();
-            formData.append("jtl_token", String(router.query["jtl-token"]));
-            formData.append("wlPos", "0");
-            formData.append("inWarenkorb", "1");
-            formData.append("a", id.toString());
-            formData.append("wke", "1");
-            formData.append("show", "1");
-            formData.append("kKundengruppe", "1");
-            formData.append("kSprache", "1");
-            formData.append("anzahl", amount.toString());
-            formData.append("inWarenkorb", "In den Warenkorb");
-            for (const [field, value] of extraFields) {
-              formData.append(field, value);
-            }
-            return formData;
-          }
-
-          const fetches = products.map((product) => {
-            const formData = getFormData(
-              product.id,
-              product.amount,
-              product.extraFields ?? []
-            );
-            console.log(Object.fromEntries(formData.entries()));
-            return fetch(`http://wm-dev.de/${product.url}`, {
-              method: "POST",
-              body: formData,
-            }).then((res) => res.ok);
-          });
-
-          const result = await Promise.all(fetches);
-
-          window.location.href = `http://wm-dev.de/Warenkorb`;
-          console.log(result);
+          window.location.href = `${process.env.NEXT_PUBLIC_SHOP_URL}/Warenkorb`;
         }}
       />
     </div>

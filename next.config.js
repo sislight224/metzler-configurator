@@ -5,11 +5,11 @@ const nextConfig = {
   rewrites: async () => [
     {
       source: "/v1",
-      destination: "http://3.137.23.97:8000/v1",
+      destination: `${apiUrl}/v1`,
     },
     {
       source: "/v1/:endpoint*",
-      destination: `http://3.137.23.97:8000/v1/:endpoint*`,
+      destination: `${apiUrl}/v1/:endpoint*`,
     },
   ],
   basePath: "/configurator",
