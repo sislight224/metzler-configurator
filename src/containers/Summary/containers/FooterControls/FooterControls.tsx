@@ -338,7 +338,7 @@ const FooterControls = observer(() => {
 
           if (zuzatsModuleType !== "Ohne") {
             const extraFieldIndex =
-              extraFields?.klingelanlage?.[klingelanlageType][
+              extraFields?.klingelanlage?.[klingelanlageType]?.[
                 zuzatsModuleType
               ] ?? 0;
             products.push({
