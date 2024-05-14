@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4000",
     "lint": "next lint",
     "ts": "tsc --noEmit --incremental --preserveWatchOutput",
     "prepare": "husky install"
