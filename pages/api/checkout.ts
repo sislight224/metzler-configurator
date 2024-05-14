@@ -11,9 +11,9 @@ function getFormData(
   formData.append("a", id.toString());
   formData.append("wke", "1");
   formData.append("anzahl", amount.toString());
-  // for (const [field, value] of extraFields) {
-  //   formData.append(field, value);
-  // }
+  for (const [field, value] of extraFields) {
+    formData.append(field, value);
+  }
   return formData;
 }
 

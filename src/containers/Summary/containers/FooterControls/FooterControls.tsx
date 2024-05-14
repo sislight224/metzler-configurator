@@ -1,13 +1,8 @@
 import styles from "./FooterControls.module.scss";
 import ConfirmConfiguration from "../../components/ConfirmConfiguration/ConfirmConfiguration";
-import { useCallback } from "react";
 import { observer } from "mobx-react-lite";
 import usePanelsStore from "../../../../hooks/store/usePanelsStore";
-import { useAppSnackbar } from "../../../../hooks/useAppSnackbar";
 import ModelControls from "../ModelControls/ModelControls";
-import { useUndoRedoStore } from "../../../../hooks/store/useUndoRedoStore";
-import { useRouter } from "next/router";
-import { config } from "./config";
 
 const montage = {
   "Freistehend mit Standfuß zum Einbetonieren": {
@@ -54,15 +49,15 @@ const zusatzmodule = {
   namensschild_mit_gravur: {
     Klingelanlage: {
       url: "Hauptmodul-BK212-Klingeltableau-mit-gravierten-Namensschildern",
-      id: 5,
+      id: 40124,
     },
     "Video Gegensprechmodul": {
       url: "Hauptmodul-BK212-Videomodul-mit-gravierten-Namensschildern",
-      id: 7,
+      id: 40123,
     },
     "Audio Gegensprechmodul": {
       url: "Hauptmodul-BK212-Audiomodul-mit-gravierten-Namensschildern",
-      id: 9,
+      id: 40125,
     },
   },
 };
@@ -70,9 +65,9 @@ const zusatzmodule = {
 const extraFields = {
   klingelanlage: {
     namensschild_mit_gravur: {
-      Klingelanlage: 48,
-      "Video Gegensprechmodul": 33,
-      "Audio Gegensprechmodul": 18,
+      Klingelanlage: 12966,
+      "Video Gegensprechmodul": 12951,
+      "Audio Gegensprechmodul": 12981,
     },
   },
 };
@@ -147,8 +142,8 @@ const namensschild = {
   },
   "Namensschild mit Gravur": {
     url: "Edelstahl-Namensschild-mit-individueller-Gravur",
-    id: 12544,
-    extraFieldId: 62,
+    id: 40113,
+    extraFieldId: 12936,
   },
 };
 
@@ -181,22 +176,22 @@ const Text3D = {
   },
   links: {
     url: "3D-Textleiste-Links-Ja",
-    id: 40108,
+    id: 40129,
   },
   rechts: {
     url: "3D-Textleiste-Rechts-Ja",
-    id: 40108,
+    id: 40130,
   },
 };
 
 const modulePosition = {
   rechts: {
     url: "Modulposition-rechts",
-    id: "48",
+    id: "40128",
   },
   links: {
     url: "Modulposition-links",
-    id: "47",
+    id: "40127",
   },
 };
 
@@ -205,7 +200,7 @@ const Text3DLed = {
   id: 40109,
 };
 
-const TEXT_3D_EXTRAFIELD = "eigenschaftwert[16]";
+const TEXT_3D_EXTRAFIELD = "eigenschaftwert[12996]";
 
 const deckel = {
   [`1`]: {
@@ -231,28 +226,26 @@ const deckel = {
 };
 
 const fontIds = {
-  "0": "50",
-  "1": "51",
-  "2": "52",
-  "3": "53",
-  "4": "54",
-  "5": "55",
-  "6": "56",
-  "7": "57",
-  "8": "58",
-  "9": "59",
-  "10": "60",
-  "12": "61",
-  "15": "62",
-  "16": "63",
-  "17": "64",
-  "18": "65",
+  "0": "34765",
+  "1": "34766",
+  "2": "34767",
+  "3": "34768",
+  "4": "34769",
+  "5": "34770",
+  "6": "34771",
+  "7": "34772",
+  "8": "34773",
+  "9": "34774",
+  "10": "34775",
+  "12": "34776",
+  "15": "34777",
+  "16": "34778",
+  "17": "34779",
+  "18": "34780",
 };
 
 const FooterControls = observer(() => {
   const { getAllStates } = usePanelsStore();
-
-  const router = useRouter();
 
   return (
     <div className={styles.root}>
@@ -262,7 +255,6 @@ const FooterControls = observer(() => {
       <ConfirmConfiguration
         onConfirm={async () => {
           const states = getAllStates();
-          console.log(states);
           const montageProduct = montage[states.montage.montageType];
           const briefcaseAmount = states.montage["mailBoxesCount"];
           const rowAmount = states.zusatzmodule["mailBoxesRanksCount"];
@@ -505,6 +497,9 @@ const FooterControls = observer(() => {
               amount: 1,
             });
           }
+
+          console.log(states);
+          console.log(products);
 
           await fetch("/configurator/api/checkout", {
             method: "POST",

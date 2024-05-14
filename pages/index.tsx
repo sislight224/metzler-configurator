@@ -27,8 +27,7 @@ Home.needRedirect = false;
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const response = await fetch(process.env.NEXT_PUBLIC_SHOP_URL, {
     headers: {
-      cookie: "JTLSHOP=4q7ci478t3d6073n04c2opgn9q;",
-      /* cookie: ctx.req.headers["cookie"], */
+      cookie: ctx.req.headers["cookie"],
     },
   });
   if (!ctx.req.headers["cookie"]?.includes("JTLSHOP")) {
