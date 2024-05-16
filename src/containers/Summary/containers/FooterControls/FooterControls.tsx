@@ -147,6 +147,8 @@ const namensschild = {
   },
 };
 
+const namensschildBeleuchtungId = 40100;
+
 const zusatzmodulExtension = {
   "Klingeltaster & RFID": {
     url: "RFID",
@@ -312,7 +314,10 @@ const FooterControls = observer(() => {
             });
           }
 
-          if (klingeltasterCount > 0) {
+          if (
+            states.klingelanlage.beleuchtungDerKlingeltasterEnabled &&
+            klingeltasterCount > 0
+          ) {
             products.push({
               url: klingertaster[beleuchtungColor].url,
               amount: klingeltasterCount,
@@ -324,7 +329,7 @@ const FooterControls = observer(() => {
             products.push({
               url: "Namensschild-LED-Beleuchtung",
               amount: klingeltasterCount,
-              id: 20,
+              id: namensschildBeleuchtungId,
             });
           }
 
@@ -387,7 +392,7 @@ const FooterControls = observer(() => {
             }
           }
 
-          if (zusatzModulePosition) {
+          if (zusatzModulePosition && zuzatsModuleType !== "Ohne") {
             products.push({
               url: modulePosition[zusatzModulePosition].url,
               amount: 1,
@@ -472,7 +477,7 @@ const FooterControls = observer(() => {
             });
           }
 
-          if (textleiste.isCompleted) {
+          if (textleiste.beschriftung !== "") {
             products.push({
               url: Text3D["mitte"].url,
               id: Text3D["mitte"].id,
