@@ -3,7 +3,8 @@ import { NextApiHandler } from "next";
 function getFormData(
   id: number,
   amount: number = 1,
-  extraFields: [string, string][] = [],
+  extraFields: string[],
+  extraFieldId: number,
   jtlToken: string
 ) {
   const formData = new FormData();
@@ -11,8 +12,10 @@ function getFormData(
   formData.append("a", id.toString());
   formData.append("wke", "1");
   formData.append("anzahl", amount.toString());
-  for (const [field, value] of extraFields) {
-    formData.append(field, value);
+  let i = 0;
+  for (const value of extraFields) {
+    formData.append(`eigenschaftwert[${extraFieldId + i}]`, value);
+    i++;
   }
   return formData;
 }
@@ -20,12 +23,19 @@ function getFormData(
 const handler: NextApiHandler = async (req, res) => {
   const { jtlToken, products } = req.body;
 
+  console.log("COOKIE", req.headers.cookie);
+
   const fetches = products.map((product) => {
     const formData = getFormData(
-      product.id,
+      product.articleNumber,
       product.amount,
       product.extraFields ?? [],
+      product.extraFieldId,
       jtlToken
+    );
+    console.log(
+      "FORM DATA",
+      JSON.stringify(Object.fromEntries(formData.entries()))
     );
     return fetch(process.env.NEXT_PUBLIC_SHOP_URL, {
       method: "POST",

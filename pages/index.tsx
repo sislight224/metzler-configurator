@@ -1,8 +1,12 @@
+import { readFile } from "node:fs/promises";
+import { join } from "path";
+
 import Editor from "../src/containers/Editor/Editor";
 import { ExtendedNextPage } from "../src/types/next";
 import { getDefaultLayout } from "../src/helpers/getDefaultLayout";
 import { GetServerSideProps } from "next";
 import { useEffect } from "react";
+import { ProductsProvider } from "context/ProductsContext";
 
 const SaveJTLToken = ({ jtlToken }) => {
   useEffect(() => {
@@ -14,10 +18,10 @@ const SaveJTLToken = ({ jtlToken }) => {
 
 const Home: ExtendedNextPage = (props) => {
   return (
-    <>
+    <ProductsProvider products={props.products}>
       <SaveJTLToken jtlToken={props.jtlToken} />
       <Editor />
-    </>
+    </ProductsProvider>
   );
 };
 
@@ -30,6 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       cookie: ctx.req.headers["cookie"],
     },
   });
+
   if (!ctx.req.headers["cookie"]?.includes("JTLSHOP")) {
     const headers = Object.fromEntries(response.headers.entries());
     ctx.res.setHeader("Set-Cookie", headers["set-cookie"]);
@@ -51,8 +56,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
     return null;
   }
+
+  const products = await fetch(process.env.NEXT_PUBLIC_PRODUCTS_URL).then(
+    (res) => res.json()
+  );
+
   return {
     props: {
+      products,
       jtlToken: extractJtlToken(html),
       title: "Home",
     },
