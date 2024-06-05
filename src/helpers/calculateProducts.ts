@@ -285,7 +285,7 @@ export function calculateProducts(states) {
     });
   }
 
-  if (textleiste.beschriftung !== "") {
+  if (textleiste.isEnabled) {
     products.push({
       configuratorId: Text3D["mitte"],
       amount: 1,

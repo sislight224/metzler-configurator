@@ -1,15 +1,17 @@
-import Panel from '../../components/Panel/Panel';
-import { FC, useCallback, useEffect, useMemo } from 'react';
-import { BasePanelProps } from '../../types';
-import { observer } from 'mobx-react-lite';
-import usePanelsStore, { useZusatzmodulPanelStore } from '../../../../hooks/store/usePanelsStore';
-import PanelId from '../../../../enums/PanelId';
-import ZusatzmodulPanelPreview from './ZusatzmodulPanelPreview/ZusatzmodulPanelPreview';
-import ZusatzmodulPanelForm from './ZusatzmodulPanelForm/ZusatzmodulPanelForm';
-import ResetStepModal from '../../../Editor/components/ResetStepModal/ResetStepModal';
-import ZusatzmodulPanelState from '../../../../stores/panels/ZusatzmodulPanelState';
-import { useUndoRedoStore } from '../../../../hooks/store/useUndoRedoStore';
-import { useEditorStore } from '../../../../hooks/store/useEditorStore';
+import Panel from "../../components/Panel/Panel";
+import { FC, useCallback, useEffect, useMemo } from "react";
+import { BasePanelProps } from "../../types";
+import { observer } from "mobx-react-lite";
+import usePanelsStore, {
+  useZusatzmodulPanelStore,
+} from "../../../../hooks/store/usePanelsStore";
+import PanelId from "../../../../enums/PanelId";
+import ZusatzmodulPanelPreview from "./ZusatzmodulPanelPreview/ZusatzmodulPanelPreview";
+import ZusatzmodulPanelForm from "./ZusatzmodulPanelForm/ZusatzmodulPanelForm";
+import ResetStepModal from "../../../Editor/components/ResetStepModal/ResetStepModal";
+import ZusatzmodulPanelState from "../../../../stores/panels/ZusatzmodulPanelState";
+import { useUndoRedoStore } from "../../../../hooks/store/useUndoRedoStore";
+import { useEditorStore } from "../../../../hooks/store/useEditorStore";
 
 const ZusatzmodulPanel: FC<BasePanelProps> = observer((props) => {
   const { isPreview = false, isEditable = true } = props;
@@ -30,12 +32,8 @@ const ZusatzmodulPanel: FC<BasePanelProps> = observer((props) => {
 
   const { isInitialize } = useEditorStore();
 
-  const {
-    state,
-    isActive,
-    isCompleted,
-    setIsCompleted,
-  } = useZusatzmodulPanelStore();
+  const { state, isActive, isCompleted, setIsCompleted } =
+    useZusatzmodulPanelStore();
 
   const {
     panelTitle,
@@ -45,23 +43,25 @@ const ZusatzmodulPanel: FC<BasePanelProps> = observer((props) => {
     zusatzmodulType,
     resetPanelConfig,
     setIsRestored,
+    setMailBoxesRanksCount,
+    mailBoxesRanksCount,
     isRestored,
   } = state;
 
   const { goBack } = useUndoRedoStore();
 
   const panelMode = useMemo(() => {
-    if (!isInitialize) return 'skeleton';
+    if (!isInitialize) return "skeleton";
 
-    if (isPreview) return 'preview';
+    if (isPreview) return "preview";
 
-    if (!isEditable) return 'notEditable';
+    if (!isEditable) return "notEditable";
 
-    if (isCompleted) return 'completed';
+    if (isCompleted) return "completed";
   }, [isPreview, isCompleted, isEditable, isInitialize]);
 
   const headerContent = useMemo(() => {
-    if ((isPreview || !isEditable) || (isCompleted && !isActive)) {
+    if (isPreview || !isEditable || (isCompleted && !isActive)) {
       return <ZusatzmodulPanelPreview isPreview={isPreview} />;
     }
   }, [isActive, isCompleted, isPreview, isEditable]);
@@ -84,6 +84,11 @@ const ZusatzmodulPanel: FC<BasePanelProps> = observer((props) => {
       setIsRestored(true);
       initList();
     }
+    getPanelsConfig(configId).then((response) => {
+      setMailBoxesRanksCount(
+        response.payload.zusatzmodule?.mailBoxesRanksCount
+      );
+    });
   }, [panelsConfig, isRestored, isInitialize]);
 
   const resetStepsConfigHandler = useCallback(() => {
@@ -91,14 +96,18 @@ const ZusatzmodulPanel: FC<BasePanelProps> = observer((props) => {
     if (resetPromise) {
       resetPromise.then(() => {
         setNextPanel();
-        getPanelsConfig(configId)
-          .then((response) => {
-            setIsShowResetModal(false);
-            resetPanelConfig();
-            setIsCompleted(false);
-            updateZusatzmodulPanelConfig(state);
-            updateConfig<ZusatzmodulPanelState>(configId, PanelId.ZUSATZMODUL_ERWEITERUN, state, response.payload);
-          });
+        getPanelsConfig(configId).then((response) => {
+          setIsShowResetModal(false);
+          resetPanelConfig();
+          setIsCompleted(false);
+          updateZusatzmodulPanelConfig(state);
+          updateConfig<ZusatzmodulPanelState>(
+            configId,
+            PanelId.ZUSATZMODUL_ERWEITERUN,
+            state,
+            response.payload
+          );
+        });
       });
     }
   }, [state, isCompleted, configId]);

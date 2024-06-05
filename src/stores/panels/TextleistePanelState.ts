@@ -1,12 +1,12 @@
-import PanelId from 'enums/PanelId';
-import PanelStore from './PanelStore';
-import { makeAutoObservable } from 'mobx';
-import Textausrichtung from 'enums/data/Textausrichtung';
-import { updateConfig } from '../../api/metzler/config';
-import { ConfigType } from '../../types/configType';
-import { ConfigResponse } from '../../types/apiResource';
-import EventEmitter from 'eventemitter3';
-import { isEqual } from 'lodash';
+import PanelId from "enums/PanelId";
+import PanelStore from "./PanelStore";
+import { makeAutoObservable } from "mobx";
+import Textausrichtung from "enums/data/Textausrichtung";
+import { updateConfig } from "../../api/metzler/config";
+import { ConfigType } from "../../types/configType";
+import { ConfigResponse } from "../../types/apiResource";
+import EventEmitter from "eventemitter3";
+import { isEqual } from "lodash";
 
 export type TextleistePanelEventsType = {
   setIsBeschriftungEnabled: (value: boolean) => void;
@@ -19,17 +19,19 @@ export type TextleistePanelEventsType = {
 export default class TextleistePanelState {
   public readonly panelId: PanelId = PanelId.TEXTLEISTE;
 
-  public readonly panelTitle: string = '3D-Textleiste';
+  public readonly panelTitle: string = "3D-Textleiste";
 
   public beschriftungOberhalbIsEnabled: boolean = false;
 
-  public beschriftung: string = '';
+  public beschriftung: string = "";
 
   public textausrichtung: Textausrichtung = Textausrichtung.LINKS;
 
   public hintergrundbeleuchtungIsEnabled: boolean = false;
 
   public isRestored: boolean = false;
+
+  public isEnabled: boolean = false;
 
   private readonly _panelStore: PanelStore<TextleistePanelState>;
 
@@ -50,12 +52,22 @@ export default class TextleistePanelState {
       beschriftung: this.beschriftung,
       textausrichtung: this.textausrichtung,
       hintergrundbeleuchtungIsEnabled: this.hintergrundbeleuchtungIsEnabled,
+      isEnabled: this.isEnabled,
     };
   }
 
-  public setStates(state: TextleistePanelState & PanelStore<TextleistePanelState>) {
-    if (!isEqual(this.beschriftungOberhalbIsEnabled, state.beschriftungOberhalbIsEnabled)) {
-      this.setBeschriftungOberhalbIsEnabled(state.beschriftungOberhalbIsEnabled);
+  public setStates(
+    state: TextleistePanelState & PanelStore<TextleistePanelState>
+  ) {
+    if (
+      !isEqual(
+        this.beschriftungOberhalbIsEnabled,
+        state.beschriftungOberhalbIsEnabled
+      )
+    ) {
+      this.setBeschriftungOberhalbIsEnabled(
+        state.beschriftungOberhalbIsEnabled
+      );
     }
     if (!isEqual(this.beschriftung, state.beschriftung)) {
       this.setBeschriftung(state.beschriftung);
@@ -63,8 +75,15 @@ export default class TextleistePanelState {
     if (!isEqual(this.textausrichtung, state.textausrichtung)) {
       this.setTextausrichtung(state.textausrichtung);
     }
-    if (!isEqual(this.hintergrundbeleuchtungIsEnabled, state.hintergrundbeleuchtungIsEnabled)) {
-      this.setHintergrundbeleuchtungIsEnabled(state.hintergrundbeleuchtungIsEnabled);
+    if (
+      !isEqual(
+        this.hintergrundbeleuchtungIsEnabled,
+        state.hintergrundbeleuchtungIsEnabled
+      )
+    ) {
+      this.setHintergrundbeleuchtungIsEnabled(
+        state.hintergrundbeleuchtungIsEnabled
+      );
     }
     this._panelStore.setIsCompleted(state.isCompleted);
   }
@@ -73,21 +92,28 @@ export default class TextleistePanelState {
     this.isError = isError;
   }
 
+  public setIsEnabled(value: boolean): void {
+    this.isEnabled = value;
+  }
+
   public setBeschriftungOberhalbIsEnabled(value: boolean): void {
     this.beschriftungOberhalbIsEnabled = value;
-    this.eventEmitter.emit('setIsBeschriftungEnabled', value);
+    this.eventEmitter.emit("setIsBeschriftungEnabled", value);
   }
 
   public setBeschriftungDefaultValue(value: string): void {
-    this.eventEmitter.emit('setName', value);
+    this.eventEmitter.emit("setName", value);
   }
 
   public setBeschriftung(value: string): void {
     this.beschriftung = value;
-    this.eventEmitter.emit('setName', value);
+    this.eventEmitter.emit("setName", value);
   }
 
-  public updatePanelConfig(configId: string, data: ConfigType): Promise<ConfigResponse> {
+  public updatePanelConfig(
+    configId: string,
+    data: ConfigType
+  ): Promise<ConfigResponse> {
     return updateConfig(configId, {
       ...data,
       textleiste: {
@@ -102,9 +128,11 @@ export default class TextleistePanelState {
   public initPanel(config: ConfigType): void {
     const { textleiste } = config;
     if (textleiste) {
-      this.hintergrundbeleuchtungIsEnabled = textleiste.hintergrundbeleuchtungIsEnabled;
+      this.hintergrundbeleuchtungIsEnabled =
+        textleiste.hintergrundbeleuchtungIsEnabled;
       this.beschriftung = textleiste.beschriftung;
-      this.beschriftungOberhalbIsEnabled = textleiste.beschriftungOberhalbIsEnabled;
+      this.beschriftungOberhalbIsEnabled =
+        textleiste.beschriftungOberhalbIsEnabled;
       this.textausrichtung = textleiste.textausrichtung;
     }
   }
@@ -120,39 +148,42 @@ export default class TextleistePanelState {
       } = panelsConfig.textleiste;
 
       this.beschriftungOberhalbIsEnabled = beschriftungOberhalbIsEnabled;
-      this.eventEmitter.emit('setIsBeschriftungEnabled', beschriftungOberhalbIsEnabled);
+      this.eventEmitter.emit(
+        "setIsBeschriftungEnabled",
+        beschriftungOberhalbIsEnabled
+      );
 
       this.hintergrundbeleuchtungIsEnabled = hintergrundbeleuchtungIsEnabled;
-      this.eventEmitter.emit('setLed', hintergrundbeleuchtungIsEnabled);
+      this.eventEmitter.emit("setLed", hintergrundbeleuchtungIsEnabled);
 
       this.textausrichtung = textausrichtung;
-      this.eventEmitter.emit('setSide', textausrichtung);
+      this.eventEmitter.emit("setSide", textausrichtung);
 
       this.beschriftung = beschriftung;
-      this.eventEmitter.emit('setName', beschriftung);
+      this.eventEmitter.emit("setName", beschriftung);
     }
   }
 
   public setTextausrichtung(value: Textausrichtung): void {
     this.textausrichtung = value;
-    this.eventEmitter.emit('setSide', value);
+    this.eventEmitter.emit("setSide", value);
   }
 
   public setHintergrundbeleuchtungIsEnabled(value: boolean): void {
     this.hintergrundbeleuchtungIsEnabled = value;
-    this.eventEmitter.emit('setLed', value);
+    this.eventEmitter.emit("setLed", value);
   }
 
   public subscribe<T extends keyof TextleistePanelEventsType>(
     event: T,
-    handler: TextleistePanelEventsType[T],
+    handler: TextleistePanelEventsType[T]
   ): void {
     // TODO небольшой хак, нужно разобраться с типами
     this.eventEmitter.on(event, handler as (...args: any) => void);
   }
 
   public setIsAddon(): void {
-    this.eventEmitter.emit('setIsAddon');
+    this.eventEmitter.emit("setIsAddon");
   }
 
   public setIsRestored(isRestored: boolean): void {
@@ -164,21 +195,20 @@ export default class TextleistePanelState {
     this._panelStore.setIsCompleted(false);
     this.setBeschriftungOberhalbIsEnabled(false);
 
-    this.setBeschriftung('');
+    this.setBeschriftung("");
     this.setIsError(false);
-    this.eventEmitter.emit('setName', 'Metzler');
+    this.eventEmitter.emit("setName", "Metzler");
 
     this.setTextausrichtung(Textausrichtung.MITTE);
     this.setHintergrundbeleuchtungIsEnabled(false);
-    return getPanelsConfig(configId)
-      .then((response) => {
-        const config = { ...response.payload } as any;
-        Object.keys(config).forEach((data) => {
-          if (data === 'textleiste') {
-            delete config[data];
-          }
-        });
-        return updateConfig(configId, config);
+    return getPanelsConfig(configId).then((response) => {
+      const config = { ...response.payload } as any;
+      Object.keys(config).forEach((data) => {
+        if (data === "textleiste") {
+          delete config[data];
+        }
       });
+      return updateConfig(configId, config);
+    });
   }
 }

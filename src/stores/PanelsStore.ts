@@ -1,23 +1,31 @@
-import { makeAutoObservable } from 'mobx';
-import EditorStore from 'stores/EditorStore';
-import PanelId from 'enums/PanelId';
-import MontagePanelState from 'stores/panels/MontagePanelState';
-import PanelStore, { AllStatesType, PanelStores } from 'stores/panels/PanelStore';
-import ZusatzmodulPanelState from './panels/ZusatzmodulPanelState';
-import InnenstationPanelState from './panels/InnenstationPanelState';
-import ZusatzmodulErweiterunPanelState from './panels/ZusatzmodulErweiterunPanelState';
-import KlingetableuPanelState from './panels/KlingetableuPanelState';
-import TextleistePanelState from './panels/TextleistePanelState';
-import BriefkastenPanelState from './panels/BriefkastenPanelState';
-import RFIDPanelState, { RFIDModule } from './panels/RFIDPanelState';
-import LichttasterPanelState from './panels/LichttasterPanelState';
-import { WindowId } from '../enums/WindowId';
-import { ConfigType } from '../types/configType';
-import { createConfig, getConfig, orderConfig, remixConfig } from '../api/metzler/config';
-import { ConfigResponse } from '../types/apiResource';
-import { ZusatzmodulErweiterunType } from '../data/ZusatzmodulErweiterun';
-import { ZusatzmodulType } from '../data/Zusatzmoduls';
-import { PanelList } from '../data/panelList';
+import { makeAutoObservable } from "mobx";
+import EditorStore from "stores/EditorStore";
+import PanelId from "enums/PanelId";
+import MontagePanelState from "stores/panels/MontagePanelState";
+import PanelStore, {
+  AllStatesType,
+  PanelStores,
+} from "stores/panels/PanelStore";
+import ZusatzmodulPanelState from "./panels/ZusatzmodulPanelState";
+import InnenstationPanelState from "./panels/InnenstationPanelState";
+import ZusatzmodulErweiterunPanelState from "./panels/ZusatzmodulErweiterunPanelState";
+import KlingetableuPanelState from "./panels/KlingetableuPanelState";
+import TextleistePanelState from "./panels/TextleistePanelState";
+import BriefkastenPanelState from "./panels/BriefkastenPanelState";
+import RFIDPanelState, { RFIDModule } from "./panels/RFIDPanelState";
+import LichttasterPanelState from "./panels/LichttasterPanelState";
+import { WindowId } from "../enums/WindowId";
+import { ConfigType } from "../types/configType";
+import {
+  createConfig,
+  getConfig,
+  orderConfig,
+  remixConfig,
+} from "../api/metzler/config";
+import { ConfigResponse } from "../types/apiResource";
+import { ZusatzmodulErweiterunType } from "../data/ZusatzmodulErweiterun";
+import { ZusatzmodulType } from "../data/Zusatzmoduls";
+import { PanelList } from "../data/panelList";
 
 export default class PanelsStore {
   public activePanelId: PanelId | null = PanelId.MONTAGE;
@@ -26,7 +34,7 @@ export default class PanelsStore {
 
   public stepIndex: number = 0;
 
-  public configId: string = '';
+  public configId: string = "";
 
   public listPanels: PanelId[] | undefined = undefined;
 
@@ -62,17 +70,41 @@ export default class PanelsStore {
 
   constructor(editorStore: EditorStore, appConfig: ConfigType) {
     this._editorStore = editorStore;
-    this._montagePanelStore = new PanelStore((panelStore) => new MontagePanelState(panelStore), this);
-    this._zusatzmodulPanelStore = new PanelStore((panelStore) => new ZusatzmodulPanelState(panelStore), this);
-    this._innenstationPanelStore = new PanelStore((panelStore) => new InnenstationPanelState(panelStore), this);
-    this._zusatzmodulErweiterunPanelStore = new PanelStore((panelStore) => new ZusatzmodulErweiterunPanelState(panelStore), this);
-    this._klingetableuPanelStore = new PanelStore((panelStore) => new KlingetableuPanelState(panelStore), this);
-    this._briefkastenPanelStore = new PanelStore((panelStore) => new BriefkastenPanelState(panelStore), this);
-    this._textleistePanelState = new PanelStore<TextleistePanelState>((panelStore) => new TextleistePanelState(panelStore), this);
-    this._rfidPanelState = new PanelStore<RFIDPanelState>((panelStore) => new RFIDPanelState(panelStore), this);
+    this._montagePanelStore = new PanelStore(
+      (panelStore) => new MontagePanelState(panelStore),
+      this
+    );
+    this._zusatzmodulPanelStore = new PanelStore(
+      (panelStore) => new ZusatzmodulPanelState(panelStore),
+      this
+    );
+    this._innenstationPanelStore = new PanelStore(
+      (panelStore) => new InnenstationPanelState(panelStore),
+      this
+    );
+    this._zusatzmodulErweiterunPanelStore = new PanelStore(
+      (panelStore) => new ZusatzmodulErweiterunPanelState(panelStore),
+      this
+    );
+    this._klingetableuPanelStore = new PanelStore(
+      (panelStore) => new KlingetableuPanelState(panelStore),
+      this
+    );
+    this._briefkastenPanelStore = new PanelStore(
+      (panelStore) => new BriefkastenPanelState(panelStore),
+      this
+    );
+    this._textleistePanelState = new PanelStore<TextleistePanelState>(
+      (panelStore) => new TextleistePanelState(panelStore),
+      this
+    );
+    this._rfidPanelState = new PanelStore<RFIDPanelState>(
+      (panelStore) => new RFIDPanelState(panelStore),
+      this
+    );
     this._lichttasterPanelState = new PanelStore<LichttasterPanelState>(
       (panelStore) => new LichttasterPanelState(panelStore),
-      this,
+      this
     );
     this.panelList = this.montagePanelStore;
     this.initPanelList();
@@ -148,7 +180,9 @@ export default class PanelsStore {
   public initPanelList(): void {
     this.panelList.setNextPanel(this.zusatzmodulPanelStore);
     this.zusatzmodulPanelStore.setNextPanel(this.textleistePanelStore);
-    this.zusatzmodulErweiterunPanelStore.setNextPanel(this.klingetableuPanelStore);
+    this.zusatzmodulErweiterunPanelStore.setNextPanel(
+      this.klingetableuPanelStore
+    );
   }
 
   public canOpenPanel(id: PanelId | null): boolean {
@@ -189,13 +223,25 @@ export default class PanelsStore {
   }
 
   public updateConfig<
-    T extends { updatePanelConfig: (id: string, data: ConfigType) => Promise<ConfigResponse> },
-  >(configId: string, panelId: PanelId, state: T, data: ConfigType): Promise<ConfigResponse> {
+    T extends {
+      updatePanelConfig: (
+        id: string,
+        data: ConfigType
+      ) => Promise<ConfigResponse>;
+    }
+  >(
+    configId: string,
+    panelId: PanelId,
+    state: T,
+    data: ConfigType
+  ): Promise<ConfigResponse> {
     return state.updatePanelConfig(configId, data);
   }
 
   public nextStep(): void {
-    const index = this.listPanels?.findIndex((item) => item === this.activePanelId);
+    const index = this.listPanels?.findIndex(
+      (item) => item === this.activePanelId
+    );
     if (index !== undefined) {
       if (index < 0) this.stepIndex = 0;
       else this.stepIndex = index + 1;
@@ -205,7 +251,9 @@ export default class PanelsStore {
   public setNextPanel(): void {
     if (this.listPanels && this.activePanelId) {
       const nextPanel = this.getState(this.listPanels[this.stepIndex]);
-      const currentPanel = this.getState(this.listPanels[this.stepIndex - 1]) || this.zusatzmodulPanelStore;
+      const currentPanel =
+        this.getState(this.listPanels[this.stepIndex - 1]) ||
+        this.zusatzmodulPanelStore;
       if (nextPanel) currentPanel?.setNextPanel(nextPanel);
     }
   }
@@ -214,7 +262,8 @@ export default class PanelsStore {
     this.montagePanelStore.setNextPanel(this.zusatzmodulPanelStore);
     if (this.listPanels) {
       const nextAfterZusatzmodul = this.getState(this.listPanels[0]);
-      if (nextAfterZusatzmodul) this.zusatzmodulPanelStore.setNextPanel(nextAfterZusatzmodul);
+      if (nextAfterZusatzmodul)
+        this.zusatzmodulPanelStore.setNextPanel(nextAfterZusatzmodul);
     }
 
     const panelsName = Object.keys(this.panelsConfig);
@@ -231,7 +280,8 @@ export default class PanelsStore {
 
   public getState(panelId: PanelId): PanelStores | undefined {
     if (panelId === PanelId.LICHTTASTER) return this.lichttasterPanelStore;
-    if (panelId === PanelId.ZUSATZMODUL_ERWEITERUN) return this.zusatzmodulErweiterunPanelStore;
+    if (panelId === PanelId.ZUSATZMODUL_ERWEITERUN)
+      return this.zusatzmodulErweiterunPanelStore;
     if (panelId === PanelId.ZUSATZMODUL) return this.zusatzmodulPanelStore;
     if (panelId === PanelId.INNENSTATION) return this.innenstationPanelStore;
     if (panelId === PanelId.MONTAGE) return this.montagePanelStore;
@@ -279,8 +329,11 @@ export default class PanelsStore {
     const { zusatzmodulErweiterun, zusatzmodule } = response.payload;
     this.setConfig(response.payload);
     if (zusatzmodulErweiterun) {
-      const type = zusatzmodulErweiterun.zusatzmodulErweiterunType as ZusatzmodulErweiterunType;
-      this.zusatzmodulErweiterunPanelStore.state.setZusatzmodulErweiterung(type);
+      const type =
+        zusatzmodulErweiterun.zusatzmodulErweiterunType as ZusatzmodulErweiterunType;
+      this.zusatzmodulErweiterunPanelStore.state.setZusatzmodulErweiterung(
+        type
+      );
     }
     if (zusatzmodule && !zusatzmodulErweiterun) {
       const type = zusatzmodule.zusatzmodulType as ZusatzmodulType;
@@ -296,7 +349,8 @@ export default class PanelsStore {
   public getAllStates(): AllStatesType {
     return {
       activePanelId: this.activePanelId,
-      [PanelId.ZUSATZMODUL_ERWEITERUN]: this.zusatzmodulErweiterunPanelStore.state.getStates(),
+      [PanelId.ZUSATZMODUL_ERWEITERUN]:
+        this.zusatzmodulErweiterunPanelStore.state.getStates(),
       [PanelId.ZUSATZMODUL]: this.zusatzmodulPanelStore.state.getStates(),
       [PanelId.INNENSTATION]: this.innenstationPanelStore.state.getStates(),
       [PanelId.MONTAGE]: this.montagePanelStore.state.getStates(),
@@ -309,7 +363,9 @@ export default class PanelsStore {
   }
 
   public setAllStates(state: AllStatesType) {
-    this.zusatzmodulErweiterunPanelStore.state.setStates(state[PanelId.ZUSATZMODUL_ERWEITERUN]);
+    this.zusatzmodulErweiterunPanelStore.state.setStates(
+      state[PanelId.ZUSATZMODUL_ERWEITERUN]
+    );
     this.zusatzmodulPanelStore.state.setStates(state[PanelId.ZUSATZMODUL]);
     this.innenstationPanelStore.state.setStates(state[PanelId.INNENSTATION]);
     this.montagePanelStore.state.setStates(state[PanelId.MONTAGE]);
@@ -348,7 +404,8 @@ export default class PanelsStore {
 
   public updateKlingeltableuPanelConfig(data: KlingetableuPanelState) {
     this.panelsConfig[PanelId.KLINGETABLEU] = {
-      beleuchtungDerKlingeltasterEnabled: data.beleuchtungDerKlingeltasterEnabled,
+      beleuchtungDerKlingeltasterEnabled:
+        data.beleuchtungDerKlingeltasterEnabled,
       beschriftungNamensschild: data.beschriftungNamensschild,
       color: data.beleuchtungColor,
       klingeltasterCount: data.klingeltasterCount,
@@ -367,11 +424,15 @@ export default class PanelsStore {
     this.panelsConfig[PanelId.RFID] = {
       exclusiveCard: { ...data.RFIDCard.exclusive } as RFIDModule,
       regularCard: { ...data.RFIDCard.regular } as RFIDModule,
-      schlusselanhangerCard: { ...data.RFIDCard.schlusselanhanger } as RFIDModule,
+      schlusselanhangerCard: {
+        ...data.RFIDCard.schlusselanhanger,
+      } as RFIDModule,
     };
   }
 
-  public updateZusatzmodulErwPanelConfig(data: ZusatzmodulErweiterunPanelState) {
+  public updateZusatzmodulErwPanelConfig(
+    data: ZusatzmodulErweiterunPanelState
+  ) {
     this.panelsConfig[PanelId.ZUSATZMODUL_ERWEITERUN] = {
       zusatzmodulErweiterunType: data.zusatzmodulErweiterung,
     };

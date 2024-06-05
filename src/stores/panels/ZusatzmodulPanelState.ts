@@ -1,15 +1,15 @@
-import { makeAutoObservable } from 'mobx';
-import PanelId from 'enums/PanelId';
-import ZusatzmodulPosition from 'enums/data/ZusatzmodulPosition';
-import zusatzmoduls, { ZusatzmodulType } from 'data/Zusatzmoduls';
-import PanelStore from './PanelStore';
-import { PanelList } from '../../data/panelList';
-import { updateConfig } from '../../api/metzler/config';
-import { ConfigType } from '../../types/configType';
-import { ConfigResponse } from '../../types/apiResource';
-import EventEmitter from 'eventemitter3';
-import { cloneDeep, isEqual } from 'lodash';
-import updateRanks from '../../helpers/updateRanks';
+import { makeAutoObservable } from "mobx";
+import PanelId from "enums/PanelId";
+import ZusatzmodulPosition from "enums/data/ZusatzmodulPosition";
+import zusatzmoduls, { ZusatzmodulType } from "data/Zusatzmoduls";
+import PanelStore from "./PanelStore";
+import { PanelList } from "../../data/panelList";
+import { updateConfig } from "../../api/metzler/config";
+import { ConfigType } from "../../types/configType";
+import { ConfigResponse } from "../../types/apiResource";
+import EventEmitter from "eventemitter3";
+import { cloneDeep, isEqual } from "lodash";
+import updateRanks from "../../helpers/updateRanks";
 
 const [zusatzmodulsInitial] = zusatzmoduls;
 
@@ -26,7 +26,7 @@ export type ZusatzmodulPanelEventsType = {
 export default class ZusatzmodulPanelState {
   public readonly panelId: PanelId = PanelId.ZUSATZMODUL;
 
-  public readonly panelTitle: string = 'Zusatzmodul';
+  public readonly panelTitle: string = "Zusatzmodul";
 
   public isShowResetModal: boolean = false;
 
@@ -59,7 +59,9 @@ export default class ZusatzmodulPanelState {
     };
   }
 
-  public setStates(state: ZusatzmodulPanelState & PanelStore<ZusatzmodulPanelState>) {
+  public setStates(
+    state: ZusatzmodulPanelState & PanelStore<ZusatzmodulPanelState>
+  ) {
     if (!isEqual(this.zusatzmodulType, state.zusatzmodulType)) {
       this.setZusatzmodulType(state.zusatzmodulType);
     }
@@ -77,102 +79,131 @@ export default class ZusatzmodulPanelState {
   }
 
   public setAddonsModules(value: ZusatzmodulType): void {
-    if (value.value === 'klingetableu') {
-      this.eventEmitter.emit('setIsCamera', false);
-      this.eventEmitter.emit('setIsAudio', false);
-      if (this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount === 1) {
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(false);
+    if (value.value === "klingetableu") {
+      this.eventEmitter.emit("setIsCamera", false);
+      this.eventEmitter.emit("setIsAudio", false);
+      if (
+        this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount ===
+        1
+      ) {
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+          false
+        );
       }
       this.isHasAddonModule = true;
       this.setRankForAddon();
-      this.eventEmitter.emit('setIsLight', false);
-      this.eventEmitter.emit('setIsAddonModule', false);
-      this.eventEmitter.emit('setIsAddonPlatesVisible', true);
+      this.eventEmitter.emit("setIsLight", false);
+      this.eventEmitter.emit("setIsAddonModule", false);
+      this.eventEmitter.emit("setIsAddonPlatesVisible", true);
       return;
     }
-    if (value.value === 'ohne') {
-      this.eventEmitter.emit('setIsAddonModule', false);
-      this.eventEmitter.emit('setIsAddonPlatesVisible', false);
+    if (value.value === "ohne") {
+      this.eventEmitter.emit("setIsAddonModule", false);
+      this.eventEmitter.emit("setIsAddonPlatesVisible", false);
       this.isHasAddonModule = false;
-      if (this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount === 1) {
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(true);
+      if (
+        this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount ===
+        1
+      ) {
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+          true
+        );
       }
       this.setRankForAddon();
-      this.eventEmitter.emit('setIsCamera', false);
-      this.eventEmitter.emit('setIsAudio', false);
-      this.eventEmitter.emit('setIsLight', false);
+      this.eventEmitter.emit("setIsCamera", false);
+      this.eventEmitter.emit("setIsAudio", false);
+      this.eventEmitter.emit("setIsLight", false);
       return;
     }
 
     this.isHasAddonModule = true;
     this.setRankForAddon();
-    if (this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount === 1) {
-      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(false);
+    if (
+      this._panelStore.panelsStore.montagePanelStore.state.mailBoxesCount === 1
+    ) {
+      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+        false
+      );
     }
-    this.eventEmitter.emit('setIsAddonModule', true);
-    this.eventEmitter.emit('setIsAddonPlatesVisible', true);
-    this.eventEmitter.emit('setIsLight', true);
+    this.eventEmitter.emit("setIsAddonModule", true);
+    this.eventEmitter.emit("setIsAddonPlatesVisible", true);
+    this.eventEmitter.emit("setIsLight", true);
 
-    if (value.value === 'videoGegensprechmodul') {
-      this.eventEmitter.emit('setIsAudio', false);
-      this.eventEmitter.emit('setIsCamera', true);
+    if (value.value === "videoGegensprechmodul") {
+      this.eventEmitter.emit("setIsAudio", false);
+      this.eventEmitter.emit("setIsCamera", true);
     }
-    if (value.value === 'audioGegensprechmodul') {
-      this.eventEmitter.emit('setIsAudio', true);
-      this.eventEmitter.emit('setIsCamera', false);
+    if (value.value === "audioGegensprechmodul") {
+      this.eventEmitter.emit("setIsAudio", true);
+      this.eventEmitter.emit("setIsCamera", false);
     }
   }
 
   public setRankForAddon(): void {
-    const { mailBoxesCount } = this._panelStore.panelsStore.montagePanelStore.state;
+    const { mailBoxesCount } =
+      this._panelStore.panelsStore.montagePanelStore.state;
 
     updateRanks(
       mailBoxesCount,
       this.isHasAddonModule,
-      this.setMailBoxesRanksCount,
+      this.setMailBoxesRanksCount
     );
   }
 
   public setZusatzmodulType(value: ZusatzmodulType): void {
     this.zusatzmodulType = value;
-    const { state: montageState } = this._panelStore.panelsStore.montagePanelStore;
-    const type = this._panelStore.panelsStore.montagePanelStore.state.montageType;
+    const { state: montageState } =
+      this._panelStore.panelsStore.montagePanelStore;
+    const type =
+      this._panelStore.panelsStore.montagePanelStore.state.montageType;
 
-    if (value.value === 'klingetableu') {
+    if (value.value === "klingetableu") {
       this._panelStore.panelsStore.setListPanels(PanelList.klingetableu);
       this._panelStore.panelsStore.nextStep();
       this.setAddonsModules(value);
       if (montageState.mailBoxesCount < 2) {
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(false);
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(false);
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+          false
+        );
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(
+          false
+        );
       }
       this._panelStore.panelsStore.montagePanelStore.state.montageType = type;
       return;
     }
 
-    if (value.value === 'ohne') {
+    if (value.value === "ohne") {
       this._panelStore.panelsStore.setListPanels(PanelList.ohne);
       this._panelStore.panelsStore.nextStep();
       this.setAddonsModules(value);
       if (montageState.mailBoxesCount < 2) {
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(true);
-        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(true);
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+          true
+        );
+        this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(
+          true
+        );
       }
       this._panelStore.panelsStore.montagePanelStore.state.montageType = type;
       return;
     }
 
-    this.eventEmitter.emit('setIsAddonModule', true);
+    this.eventEmitter.emit("setIsAddonModule", true);
     if (montageState.mailBoxesCount < 2) {
-      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(false);
-      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(false);
+      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleDies(
+        false
+      );
+      this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(
+        false
+      );
     }
-    this.eventEmitter.emit('setIsAddonPlatesVisible', true);
-    this.eventEmitter.emit('setIsLight', true);
+    this.eventEmitter.emit("setIsAddonPlatesVisible", true);
+    this.eventEmitter.emit("setIsLight", true);
 
-    if (value.value === 'videoGegensprechmodul') this.setAddonsModules(value);
+    if (value.value === "videoGegensprechmodul") this.setAddonsModules(value);
 
-    if (value.value === 'audioGegensprechmodul') this.setAddonsModules(value);
+    if (value.value === "audioGegensprechmodul") this.setAddonsModules(value);
 
     this._panelStore.panelsStore.setListPanels(PanelList.klingetaster);
     this._panelStore.panelsStore.nextStep();
@@ -185,13 +216,14 @@ export default class ZusatzmodulPanelState {
 
   public setZusatzmodulPosition(position: ZusatzmodulPosition): void {
     this.zusatzmodulPosition = position;
-    if (position === ZusatzmodulPosition.LINKS) this.eventEmitter.emit('setAddonModulePosition', false);
-    else this.eventEmitter.emit('setAddonModulePosition', true);
+    if (position === ZusatzmodulPosition.LINKS)
+      this.eventEmitter.emit("setAddonModulePosition", false);
+    else this.eventEmitter.emit("setAddonModulePosition", true);
   }
 
   public setMailBoxesRanksCount(count: number): void {
     this.mailBoxesRanksCount = count;
-    this.eventEmitter.emit('setMailRanksCount', count);
+    this.eventEmitter.emit("setMailRanksCount", count);
   }
 
   public initPanel(config: ConfigType): void {
@@ -207,15 +239,21 @@ export default class ZusatzmodulPanelState {
     if (config.zusatzmodule) {
       const { zusatzmodule: state } = config;
       if (state) {
-        if (state?.zusatzmodulType.value !== this.zusatzmodulType.value) return false;
-        if (state?.zusatzmodulPosition !== this.zusatzmodulPosition) return false;
-        if (state.mailBoxesRanksCount !== this.mailBoxesRanksCount) return false;
+        if (state?.zusatzmodulType.value !== this.zusatzmodulType.value)
+          return false;
+        if (state?.zusatzmodulPosition !== this.zusatzmodulPosition)
+          return false;
+        if (state.mailBoxesRanksCount !== this.mailBoxesRanksCount)
+          return false;
       }
     }
     return true;
   }
 
-  public updatePanelConfig(configId: string, data: ConfigType): Promise<ConfigResponse> {
+  public updatePanelConfig(
+    configId: string,
+    data: ConfigType
+  ): Promise<ConfigResponse> {
     return updateConfig(configId, {
       ...data,
       zusatzmodule: {
@@ -229,9 +267,10 @@ export default class ZusatzmodulPanelState {
   public setRemixConfig(): void {
     const { panelsConfig } = this._panelStore.panelsStore;
     if (panelsConfig.zusatzmodule) {
-      const { zusatzmodulType, zusatzmodulPosition, mailBoxesRanksCount } = panelsConfig.zusatzmodule;
+      const { zusatzmodulType, zusatzmodulPosition, mailBoxesRanksCount } =
+        panelsConfig.zusatzmodule;
       this.mailBoxesRanksCount = mailBoxesRanksCount;
-      this.eventEmitter.emit('setMailRanksCount', mailBoxesRanksCount);
+      this.eventEmitter.emit("setMailRanksCount", mailBoxesRanksCount);
 
       this.zusatzmodulType = zusatzmodulType;
 
@@ -239,14 +278,17 @@ export default class ZusatzmodulPanelState {
       this.setAddonsModules(zusatzmodulType);
 
       this.zusatzmodulPosition = zusatzmodulPosition;
-      if (zusatzmodulPosition === ZusatzmodulPosition.LINKS) this.eventEmitter.emit('setAddonModulePosition', false);
-      else this.eventEmitter.emit('setAddonModulePosition', true);
+      if (zusatzmodulPosition === ZusatzmodulPosition.LINKS)
+        this.eventEmitter.emit("setAddonModulePosition", false);
+      else this.eventEmitter.emit("setAddonModulePosition", true);
     }
   }
 
   public reset(): Promise<ConfigResponse> {
-    const { mailBoxesCount } = this._panelStore.panelsStore.montagePanelStore.state;
-    const { setVisibleDies } = this._panelStore.panelsStore.briefkastenPanelStore.state;
+    const { mailBoxesCount } =
+      this._panelStore.panelsStore.montagePanelStore.state;
+    const { setVisibleDies } =
+      this._panelStore.panelsStore.briefkastenPanelStore.state;
 
     this.setZusatzmodulType(zusatzmodulsInitial);
     this.setZusatzmodulPosition(ZusatzmodulPosition.LINKS);
@@ -255,44 +297,47 @@ export default class ZusatzmodulPanelState {
     updateRanks(
       mailBoxesCount,
       this.isHasAddonModule,
-      this.setMailBoxesRanksCount,
+      this.setMailBoxesRanksCount
     );
 
     const { getPanelsConfig, configId } = this._panelStore.panelsStore;
 
-    return getPanelsConfig(configId)
-      .then((response) => {
-        const config = { ...response.payload } as any;
-        Object.keys(config).forEach((data) => {
-          if (data === 'zusatzmodule') delete config[data];
-        });
-        return updateConfig(configId, config);
+    return getPanelsConfig(configId).then((response) => {
+      const config = { ...response.payload } as any;
+      Object.keys(config).forEach((data) => {
+        if (data === "zusatzmodule") delete config[data];
       });
+      return updateConfig(configId, config);
+    });
   }
 
   public resetPanelConfig(): void {
-    const { getPanelsConfig, configId, updateConfig: updateConfiguration, zusatzmodulPanelStore } = this._panelStore.panelsStore;
-    getPanelsConfig(configId)
-      .then((response) => {
-        const config = { ...response.payload } as any;
-        Object.keys(config).forEach((data) => {
-          if (data === 'zusatzmodule') return;
-          if (data === 'montage') return;
-          delete config[data];
-        });
-
-        return updateConfiguration<ZusatzmodulPanelState>(
-          configId,
-          this.panelId,
-          zusatzmodulPanelStore.state,
-          config,
-        );
+    const {
+      getPanelsConfig,
+      configId,
+      updateConfig: updateConfiguration,
+      zusatzmodulPanelStore,
+    } = this._panelStore.panelsStore;
+    getPanelsConfig(configId).then((response) => {
+      const config = { ...response.payload } as any;
+      Object.keys(config).forEach((data) => {
+        if (data === "zusatzmodule") return;
+        if (data === "montage") return;
+        delete config[data];
       });
+
+      return updateConfiguration<ZusatzmodulPanelState>(
+        configId,
+        this.panelId,
+        zusatzmodulPanelStore.state,
+        config
+      );
+    });
   }
 
   public subscribe<T extends keyof ZusatzmodulPanelEventsType>(
     event: T,
-    handler: ZusatzmodulPanelEventsType[T],
+    handler: ZusatzmodulPanelEventsType[T]
   ): void {
     // TODO небольшой хак, нужно разобраться с типами
     this.eventEmitter.on(event, handler as (...args: any) => void);

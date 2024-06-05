@@ -15,7 +15,6 @@ const SaveJTLToken = ({ jtlToken }) => {
 };
 
 const SummaryPage: ExtendedNextPage = (props) => {
-  console.log({ props });
   return (
     <ProductsProvider products={props.products}>
       <SaveJTLToken jtlToken={props.jtlToken} />
