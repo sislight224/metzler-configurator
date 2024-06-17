@@ -251,6 +251,10 @@ export default class EditorStore {
     this.panelsStore.zusatzmodulPanelStore.state.subscribe(
       "setMailRanksCount",
       (count) => {
+        if (!count) {
+          return;
+        }
+        console.log("count", count);
         VARS._STATE_skeleton.rows = count;
         this.puzzles.procedures.cofigure_skeleton();
         VARS._STATE_skeleton.cam_addon_target = false;
