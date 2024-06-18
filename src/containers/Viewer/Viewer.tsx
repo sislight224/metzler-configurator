@@ -1,13 +1,13 @@
-import styles from './Viewer.module.scss';
-import { useEffect, useMemo } from 'react';
-import { createApp } from '../v3dApp/app';
-import classnames from 'classnames';
-import { observer } from 'mobx-react-lite';
-import { useEditorStore } from '../../hooks/store/useEditorStore';
-import { PuzzleType } from '../../types/PuzzleType';
-import html2canvas from 'html2canvas';
-import { useWindowSize } from 'react-use';
-import { vergeConfig } from '../../config/vergeConfig';
+import styles from "./Viewer.module.scss";
+import { useEffect, useMemo } from "react";
+import { createApp } from "../v3dApp/app";
+import classnames from "classnames";
+import { observer } from "mobx-react-lite";
+import { useEditorStore } from "../../hooks/store/useEditorStore";
+import { PuzzleType } from "../../types/PuzzleType";
+import html2canvas from "html2canvas";
+import { useWindowSize } from "react-use";
+import { vergeConfig } from "../../config/vergeConfig";
 
 const Viewer = observer(() => {
   const {
@@ -58,10 +58,7 @@ const Viewer = observer(() => {
     <div
       className={classnames(styles.root, { [styles.root_hide]: !isShowScene })}
     >
-      <div
-        id={vergeId}
-        className={styles.scene}
-      />
+      <div id={vergeId} className={styles.scene} />
     </div>
   );
 });

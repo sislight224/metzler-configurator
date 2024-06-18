@@ -19293,7 +19293,7 @@ function createPL(v3d = window.v3d) {
     dictSet(_STATE_skeleton, "rows", 1);
     dictSet(_STATE_skeleton, "addon_module", false);
     dictSet(_STATE_skeleton, "rows_avto", true);
-    dictSet(_STATE_skeleton, "mounting", false);
+    dictSet(_STATE_skeleton, "mounting", true);
     dictSet(_STATE_skeleton, "screws", true);
     dictSet(_STATE_skeleton, "handle_color", false);
     dictSet(_STATE_skeleton, "transparent", false);

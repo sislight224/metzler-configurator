@@ -1,13 +1,13 @@
-import { makeAutoObservable } from 'mobx';
-import PanelId from 'enums/PanelId';
-import MontageType from 'enums/data/MontageType';
-import PanelStore from './PanelStore';
-import { getConfig, updateConfig } from '../../api/metzler/config';
-import { ConfigType } from '../../types/configType';
-import { ConfigResponse } from '../../types/apiResource';
-import EventEmitter from 'eventemitter3';
-import { isEqual } from 'lodash';
-import updateRanks from '../../helpers/updateRanks';
+import { makeAutoObservable } from "mobx";
+import PanelId from "enums/PanelId";
+import MontageType from "enums/data/MontageType";
+import PanelStore from "./PanelStore";
+import { getConfig, updateConfig } from "../../api/metzler/config";
+import { ConfigType } from "../../types/configType";
+import { ConfigResponse } from "../../types/apiResource";
+import EventEmitter from "eventemitter3";
+import { isEqual } from "lodash";
+import updateRanks from "../../helpers/updateRanks";
 
 export type MontagePanelEventsType = {
   setMailBoxesCount: (count: number) => void;
@@ -19,9 +19,9 @@ export type MontagePanelEventsType = {
 export default class MontagePanelState {
   public readonly panelId: PanelId = PanelId.MONTAGE;
 
-  public readonly panelTitle: string = 'Anzahl, Ausrichtung & Montage';
+  public readonly panelTitle: string = "Anzahl, Ausrichtung & Montage";
 
-  public montageType: MontageType = MontageType.EINBETONIEREN;
+  public montageType: MontageType = MontageType.WANDMONTAGE;
 
   public mailBoxesCount: number = 9;
 
@@ -67,10 +67,13 @@ export default class MontagePanelState {
 
   public setMontageType(type: MontageType): void {
     this.montageType = type;
-    this.eventEmitter.emit('setMontageType', type);
+    this.eventEmitter.emit("setMontageType", type);
   }
 
-  public updatePanelConfig(configId: string, data: ConfigType): Promise<ConfigResponse> {
+  public updatePanelConfig(
+    configId: string,
+    data: ConfigType
+  ): Promise<ConfigResponse> {
     return updateConfig(configId, {
       ...data,
       montage: {
@@ -90,20 +93,21 @@ export default class MontagePanelState {
 
   public setRemixConfig(): void {
     const { panelsConfig } = this._panelStore.panelsStore;
-    const { state: { setMailBoxesRanksCount } } = this._panelStore.panelsStore.zusatzmodulPanelStore;
-    const { isHasAddonModule } = this._panelStore.panelsStore.zusatzmodulPanelStore.state;
-    const { state: klingetableuPanelState } = this._panelStore.panelsStore.klingetableuPanelStore;
+    const {
+      state: { setMailBoxesRanksCount },
+    } = this._panelStore.panelsStore.zusatzmodulPanelStore;
+    const { isHasAddonModule } =
+      this._panelStore.panelsStore.zusatzmodulPanelStore.state;
+    const { state: klingetableuPanelState } =
+      this._panelStore.panelsStore.klingetableuPanelStore;
     if (panelsConfig.montage) {
       const { montageType, mailBoxes } = panelsConfig.montage;
-      if (!panelsConfig[PanelId.KLINGETABLEU]) klingetableuPanelState.setKlingeltasterCount(mailBoxes);
+      if (!panelsConfig[PanelId.KLINGETABLEU])
+        klingetableuPanelState.setKlingeltasterCount(mailBoxes);
       this.setMailBoxesCount(mailBoxes);
       this.setMontageType(montageType);
 
-      updateRanks(
-        mailBoxes,
-        isHasAddonModule,
-        setMailBoxesRanksCount,
-      );
+      updateRanks(mailBoxes, isHasAddonModule, setMailBoxesRanksCount);
     }
   }
 
@@ -120,8 +124,10 @@ export default class MontagePanelState {
 
   public setMailBoxesCount(count: number): void {
     this.mailBoxesCount = count;
-    this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(true);
-    this.eventEmitter.emit('setMailBoxesCount', count);
+    this._panelStore.panelsStore.briefkastenPanelStore.state.setVisibleType(
+      true
+    );
+    this.eventEmitter.emit("setMailBoxesCount", count);
   }
 
   public reset(): Promise<ConfigResponse> {
@@ -134,12 +140,12 @@ export default class MontagePanelState {
   }
 
   public setIsAddon(): void {
-    this.eventEmitter.emit('setIsAddon', false);
+    this.eventEmitter.emit("setIsAddon", false);
   }
 
   public subscribe<T extends keyof MontagePanelEventsType>(
     event: T,
-    handler: MontagePanelEventsType[T],
+    handler: MontagePanelEventsType[T]
   ): void {
     // TODO небольшой хак, нужно разобраться с типами
     this.eventEmitter.on(event, handler as (...args: any) => void);

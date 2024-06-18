@@ -1,22 +1,22 @@
-import styles from './MontagePanelForm.module.scss';
-import { ChangeEvent, useCallback } from 'react';
-import RadioGroup from 'components/common/RadioGroup/RadioGroup';
-import Radio from 'components/common/Radio/Radio';
-import Button from 'components/common/Button/Button';
-import Slider from 'components/common/Slider/Slider';
-import { observer } from 'mobx-react-lite';
+import styles from "./MontagePanelForm.module.scss";
+import { ChangeEvent, useCallback } from "react";
+import RadioGroup from "components/common/RadioGroup/RadioGroup";
+import Radio from "components/common/Radio/Radio";
+import Button from "components/common/Button/Button";
+import Slider from "components/common/Slider/Slider";
+import { observer } from "mobx-react-lite";
 import usePanelsStore, {
   useBriefkastenPanelStore,
   useKlingeltableuPanelStore,
   useMontagePanelStore,
   useZusatzmodulPanelStore,
-} from 'hooks/store/usePanelsStore';
-import MontageType from 'enums/data/MontageType';
-import InfoSection from 'containers/Panels/components/InfoSection/InfoSection';
-import PanelId from '../../../../../enums/PanelId';
-import MontagePanelState from '../../../../../stores/panels/MontagePanelState';
-import { useUndoRedoStore } from '../../../../../hooks/store/useUndoRedoStore';
-import updateRanks from '../../../../../helpers/updateRanks';
+} from "hooks/store/usePanelsStore";
+import MontageType from "enums/data/MontageType";
+import InfoSection from "containers/Panels/components/InfoSection/InfoSection";
+import PanelId from "../../../../../enums/PanelId";
+import MontagePanelState from "../../../../../stores/panels/MontagePanelState";
+import { useUndoRedoStore } from "../../../../../hooks/store/useUndoRedoStore";
+import updateRanks from "../../../../../helpers/updateRanks";
 
 const MontagePanelForm = observer(() => {
   const {
@@ -28,11 +28,18 @@ const MontagePanelForm = observer(() => {
     panelsConfig,
   } = usePanelsStore();
 
-  const { isCompleted, setIsCompleted, state, nextPanel } = useMontagePanelStore();
-  const { state: { setMailBoxesRanksCount, isHasAddonModule } } = useZusatzmodulPanelStore();
+  const { isCompleted, setIsCompleted, state, nextPanel } =
+    useMontagePanelStore();
+  const {
+    state: { setMailBoxesRanksCount, isHasAddonModule },
+  } = useZusatzmodulPanelStore();
 
-  const { state: { setKlingeltasterCount, klingeltasterCount } } = useKlingeltableuPanelStore();
-  const { state: { setIsError } } = useBriefkastenPanelStore();
+  const {
+    state: { setKlingeltasterCount, klingeltasterCount },
+  } = useKlingeltableuPanelStore();
+  const {
+    state: { setIsError },
+  } = useBriefkastenPanelStore();
 
   const {
     montageType,
@@ -43,47 +50,52 @@ const MontagePanelForm = observer(() => {
     setIsShowResetModal,
   } = state;
 
-  const {
-    addStateRecord,
-  } = useUndoRedoStore();
+  const { addStateRecord } = useUndoRedoStore();
 
-  const montageTypeChangeHandler = useCallback((_: ChangeEvent<HTMLInputElement>, value: string) => {
-    const type = value as MontageType;
-    addStateRecord();
-    setMontageType(type);
+  const montageTypeChangeHandler = useCallback(
+    (_: ChangeEvent<HTMLInputElement>, value: string) => {
+      const type = value as MontageType;
+      addStateRecord();
+      setMontageType(type);
 
-    const isEqual = compareConfig(panelsConfig);
-    if (!isEqual && isCompleted) {
-      setIsShowResetModal(true);
-    }
-  }, [montageType, panelsConfig, isCompleted]);
+      const isEqual = compareConfig(panelsConfig);
+      if (!isEqual && isCompleted) {
+        setIsShowResetModal(true);
+      }
+    },
+    [montageType, panelsConfig, isCompleted]
+  );
 
-  const mailBoxesCountChangeHandler = useCallback((_: ChangeEvent<HTMLInputElement>, value: string) => {
-    addStateRecord();
-    const mailCount = Number(value);
-    setMailBoxesCount(mailCount);
-    setKlingeltasterCount(mailCount);
+  const mailBoxesCountChangeHandler = useCallback(
+    (_: ChangeEvent<HTMLInputElement>, value: string) => {
+      addStateRecord();
+      const mailCount = Number(value);
+      setMailBoxesCount(mailCount);
+      setKlingeltasterCount(mailCount);
 
-    updateRanks(
-      mailCount,
-      isHasAddonModule,
-      setMailBoxesRanksCount,
-    );
+      updateRanks(mailCount, isHasAddonModule, setMailBoxesRanksCount);
 
-    setIsError(false);
+      setIsError(false);
 
-    const isEqual = compareConfig(panelsConfig);
-    if (!isEqual && isCompleted) {
-      setIsShowResetModal(true);
-    }
-  }, [klingeltasterCount, panelsConfig, isCompleted, isHasAddonModule]);
+      const isEqual = compareConfig(panelsConfig);
+      if (!isEqual && isCompleted) {
+        setIsShowResetModal(true);
+      }
+    },
+    [klingeltasterCount, panelsConfig, isCompleted, isHasAddonModule]
+  );
 
   const completeClickHandler = useCallback(() => {
     getPanelsConfig(configId).then((response) => {
       addStateRecord();
       updateMontagePanelConfig(state);
 
-      updateConfig<MontagePanelState>(configId, PanelId.MONTAGE, state, response.payload);
+      updateConfig<MontagePanelState>(
+        configId,
+        PanelId.MONTAGE,
+        state,
+        response.payload
+      );
       if (!isCompleted) setIsCompleted(true);
       if (nextPanel) setActivePanelId(nextPanel.state.panelId);
     });
@@ -100,10 +112,10 @@ const MontagePanelForm = observer(() => {
             onChange={montageTypeChangeHandler}
           >
             <div className={styles.radioGroup}>
-              <InfoSection hintText="Betonieren Sie den Standfuß für einen sicheren Halt mit ein. Dies ist vor allem dann ideal, wenn das Fundament des Sockels noch nicht gegossen wurde">
+              <InfoSection hintText="Befestigen Sie die modulare Briefkastenanlage direkt an der Fassade.">
                 <Radio
-                  title="Freistehend mit Standfuß zum Einbetonieren"
-                  value={MontageType.EINBETONIEREN}
+                  title="Wandmontage Aufputz"
+                  value={MontageType.WANDMONTAGE}
                 />
               </InfoSection>
               <InfoSection hintText="Schrauben Sie den Standfuß mit unseren speziellen Betonankern auf ein vorhandenes Betonfundament an.">
@@ -112,10 +124,10 @@ const MontagePanelForm = observer(() => {
                   value={MontageType.ANSCHRAUBEN}
                 />
               </InfoSection>
-              <InfoSection hintText="Befestigen Sie die modulare Briefkastenanlage direkt an der Fassade.">
+              <InfoSection hintText="Betonieren Sie den Standfuß für einen sicheren Halt mit ein. Dies ist vor allem dann ideal, wenn das Fundament des Sockels noch nicht gegossen wurde">
                 <Radio
-                  title="Wandmontage Aufputz"
-                  value={MontageType.WANDMONTAGE}
+                  title="Freistehend mit Standfuß zum Einbetonieren"
+                  value={MontageType.EINBETONIEREN}
                 />
               </InfoSection>
             </div>
@@ -125,9 +137,7 @@ const MontagePanelForm = observer(() => {
       <div className={styles.divider} />
       <div className={styles.section}>
         <div className={styles.mailBoxesContainer}>
-          <div className={styles.text}>
-            Anzahl der Briefkästen
-          </div>
+          <div className={styles.text}>Anzahl der Briefkästen</div>
           <Slider
             value={mailBoxesCount}
             onChange={mailBoxesCountChangeHandler}
