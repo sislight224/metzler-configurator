@@ -12,7 +12,7 @@ const nextConfig = {
       destination: `${apiUrl}/v1/:endpoint*`,
     },
   ],
-  basePath: "/configurator",
+  basePath: "/konfigurator",
   swcMinify: true,
   reactStrictMode: false,
   eslint: {

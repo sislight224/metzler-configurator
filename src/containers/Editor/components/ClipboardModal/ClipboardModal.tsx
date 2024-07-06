@@ -13,7 +13,7 @@ export interface ClipboardModalProps {
   onCopyClick?: () => void;
 }
 
-const link: string = 'https://edelstahl-tuerklingel.de/configurator/amskdmo21n';
+const link: string = 'https://edelstahl-tuerklingel.de/konfigurator/amskdmo21n';
 
 const ClipboardModal: FC<ClipboardModalProps> = (props) => {
   const {

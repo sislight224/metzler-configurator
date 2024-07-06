@@ -4,7 +4,7 @@ import styles from "./PdfHeaderStyles";
 const PdfFooter = () => {
   return (
     <View fixed style={styles.header}>
-      <Image src="/configurator/images/pdf-logo.png" />
+      <Image src="/konfigurator/images/pdf-logo.png" />
     </View>
   );
 };

@@ -138,7 +138,7 @@ function createPL(v3d = window.v3d) {
     _initGlob.output.initOptions.useFullscreen = true;
 
     loadFile(
-      "./configurator/json/fonts.json",
+      "./konfigurator/json/fonts.json",
       function () {
         _fonts = _pGlob.loadedFile;
         var i_list = typeof _fonts == "object" ? Object.keys(_fonts) : [];
@@ -16633,11 +16633,11 @@ function createPL(v3d = window.v3d) {
     // Describe this function...
     function init() {
       loadFile(
-        "./configurator/json/placement_rules.json",
+        "./konfigurator/json/placement_rules.json",
         function () {
           _JSON_placement_rules = _pGlob.loadedFile;
           loadFile(
-            "./configurator/json/fonts.json",
+            "./konfigurator/json/fonts.json",
             function () {
               _JSON_font_path = _pGlob.loadedFile;
               changeVis(

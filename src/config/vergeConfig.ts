@@ -6,6 +6,6 @@ export interface VergeConfig {
 
 export const vergeConfig: VergeConfig = {
   id: "v3d-container",
-  sceneURL: "configurator/v3dApp/verge_app.gltf",
-  logicURL: "configurator/v3dApp/visual_logic.js",
+  sceneURL: "konfigurator/v3dApp/verge_app.gltf",
+  logicURL: "konfigurator/v3dApp/visual_logic.js",
 };

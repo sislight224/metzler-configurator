@@ -8,7 +8,7 @@ export default function Document(): ReactElement {
         <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <body>
-        <script src="/configurator/v3d.js" />
+        <script src="/konfigurator/v3d.js" />
         <Main />
         <NextScript />
       </body>

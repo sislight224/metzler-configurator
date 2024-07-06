@@ -13,7 +13,7 @@ export type ApiRequestError = AxiosError<{
 }>;
 
 export const instance = axios.create({
-  baseURL: `/configurator/${process.env.NEXT_PUBLIC_API_PREFIX}`,
+  baseURL: `/konfigurator/${process.env.NEXT_PUBLIC_API_PREFIX}`,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

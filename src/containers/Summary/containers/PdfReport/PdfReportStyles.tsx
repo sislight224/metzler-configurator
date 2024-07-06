@@ -3,16 +3,16 @@ import { Font, StyleSheet } from "@react-pdf/renderer";
 Font.register({
   family: "Montserrat",
   fonts: [
-    { src: "/configurator/fonts/cssFonts/MontserratRegular.ttf" },
+    { src: "/konfigurator/fonts/cssFonts/MontserratRegular.ttf" },
     {
-      src: "/configurator/fonts/cssFonts/MontserratMedium.ttf",
+      src: "/konfigurator/fonts/cssFonts/MontserratMedium.ttf",
       fontWeight: 500,
     },
     {
-      src: "/configurator/fonts/cssFonts/MontserratSemiBold.ttf",
+      src: "/konfigurator/fonts/cssFonts/MontserratSemiBold.ttf",
       fontWeight: 600,
     },
-    { src: "/configurator/fonts/cssFonts/MontserratBold.ttf", fontWeight: 700 },
+    { src: "/konfigurator/fonts/cssFonts/MontserratBold.ttf", fontWeight: 700 },
   ],
 });
 

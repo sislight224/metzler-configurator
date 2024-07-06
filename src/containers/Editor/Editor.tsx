@@ -60,7 +60,8 @@ const Editor: FC = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (query.uuid) setConfigUrl(`${window.location.origin}${router.asPath}`);
+    if (query.uuid)
+      setConfigUrl(`${window.location.origin}/konfigurator${router.asPath}`);
   }, [query, router]);
 
   useEffect(() => {

@@ -28,13 +28,13 @@ Run:
 
 ## Nginx configuration
 
-The nextjs server uses `/configurator` as a base path it means, you access to the frontned via `localhost:3000/configurator`. So on nginx you need to setup a proxy pass to the `/configurator` path.
+The nextjs server uses `/konfigurator` as a base path it means, you access to the frontned via `localhost:3000/configurator`. So on nginx you need to setup a proxy pass to the `/configurator` path.
 
 Example
 
 ```nginx
 
-location /configurator {
+location /konfigurator {
   proxy_redirect                      off;
   proxy_set_header Host               $host;
   proxy_set_header X-Real-IP          $remote_addr;

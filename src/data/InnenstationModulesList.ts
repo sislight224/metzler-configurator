@@ -40,12 +40,12 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     description: VDM10HomeWeib,
     connectionType: InnenstationType.LAN_POE,
     previewForDescription: [
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-2.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-3.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-4.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-2.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-3.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-4.jpg",
     ],
-    mainPreview: "/configurator/images/VDM10_Home_weib/VDM10_Home_weib.png",
+    mainPreview: "/konfigurator/images/VDM10_Home_weib/VDM10_Home_weib.png",
   },
   {
     moduleName: "Metzler VDM10 2.0 Innenstation Home, schwarz",
@@ -56,13 +56,13 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     connectionType: InnenstationType.LAN_POE,
     description: VDM10HomeSchwarz,
     previewForDescription: [
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-2.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-4.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-5.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-2.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-4.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-5.jpg",
     ],
     mainPreview:
-      "/configurator/images/VDM10_Home_schwarz/VDM10_Home_schwarz.png",
+      "/konfigurator/images/VDM10_Home_schwarz/VDM10_Home_schwarz.png",
   },
   {
     moduleName: "Metzler VDM10 2.0 Innenstation Ultra, schwarz",
@@ -73,13 +73,13 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     connectionType: InnenstationType.LAN_POE,
     description: VDM10UltraSchwarz,
     previewForDescription: [
-      "/configurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz.jpg",
-      "/configurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-2.jpg",
-      "/configurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-3.jpg",
-      "/configurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-4.jpg",
+      "/konfigurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz.jpg",
+      "/konfigurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-2.jpg",
+      "/konfigurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-3.jpg",
+      "/konfigurator/images/VDM10_Ultra_schwarz/metzler-vdm10-20-innenstation-ultra-10-zoll-touchscreen-lan-poe-schwarz-4.jpg",
     ],
     mainPreview:
-      "/configurator/images/VDM10_Ultra_schwarz/VDM10_Ultra_schwarz.png",
+      "/konfigurator/images/VDM10_Ultra_schwarz/VDM10_Ultra_schwarz.png",
   },
   {
     moduleName: "Metzler VDM10 2.0 Innenstation Pro, grau",
@@ -90,12 +90,12 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     connectionType: InnenstationType.LAN_POE,
     description: VDM10ProGrau,
     previewForDescription: [
-      "/configurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau.jpg",
-      "/configurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-2.jpg",
-      "/configurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-3.jpg",
-      "/configurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-6.jpg",
+      "/konfigurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau.jpg",
+      "/konfigurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-2.jpg",
+      "/konfigurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-3.jpg",
+      "/konfigurator/images/VDM10_Pro_grau/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-grau-6.jpg",
     ],
-    mainPreview: "/configurator/images/VDM10_Pro_grau/VDM10_Pro_grau.png",
+    mainPreview: "/konfigurator/images/VDM10_Pro_grau/VDM10_Pro_grau.png",
   },
   {
     moduleName: "Metzler VDM10 2.0 Innenstation Pro, schwarz - rose",
@@ -106,12 +106,12 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     connectionType: InnenstationType.LAN_POE,
     description: VDM10ProSchwarzRose,
     previewForDescription: [
-      "/configurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose.jpg",
-      "/configurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose-2.jpg",
-      "/configurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose-3.jpg",
+      "/konfigurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose.jpg",
+      "/konfigurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose-2.jpg",
+      "/konfigurator/images/VDM10_Pro_schwarz_rose/metzler-vdm10-20-innenstation-pro-7-zoll-ips-touchscreen-lan-poe-schwarz-rose-3.jpg",
     ],
     mainPreview:
-      "/configurator/images/VDM10_Pro_schwarz_rose/VDM10_Pro_schwarz_rose.png",
+      "/konfigurator/images/VDM10_Pro_schwarz_rose/VDM10_Pro_schwarz_rose.png",
   },
 
   {
@@ -123,12 +123,12 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     description: VDM10HomeWeibDraht,
     connectionType: InnenstationType.DRAHT,
     previewForDescription: [
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-2.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-3.jpg",
-      "/configurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-4.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-2.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-3.jpg",
+      "/konfigurator/images/VDM10_Home_weib/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-weiss-4.jpg",
     ],
-    mainPreview: "/configurator/images/VDM10_Home_weib/VDM10_Home_weib.png",
+    mainPreview: "/konfigurator/images/VDM10_Home_weib/VDM10_Home_weib.png",
   },
   {
     moduleName: "Metzler VDM10 2.0 Innenstation Home, schwarz",
@@ -139,12 +139,12 @@ export const innenstationModulesList: InnenstationModulesListType[] = [
     connectionType: InnenstationType.DRAHT,
     description: VDM10HomeSchwarzDraht,
     previewForDescription: [
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-2.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-4.jpg",
-      "/configurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-5.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-2.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-4.jpg",
+      "/konfigurator/images/VDM10_Home_schwarz/metzler-vdm10-20-innenstation-home-7-zoll-touchscreen-lan-poe-schwarz-5.jpg",
     ],
     mainPreview:
-      "/configurator/images/VDM10_Home_schwarz/VDM10_Home_schwarz.png",
+      "/konfigurator/images/VDM10_Home_schwarz/VDM10_Home_schwarz.png",
   },
 ];
