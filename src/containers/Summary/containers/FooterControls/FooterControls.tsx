@@ -42,8 +42,6 @@ const FooterControls = observer(() => {
           console.log(states);
           console.log({ basketProducts });
 
-          return;
-
           await fetch("/konfigurator/api/checkout", {
             method: "POST",
             headers: {
