@@ -57,9 +57,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return null;
   }
 
-  const products = await fetch(process.env.NEXT_PUBLIC_PRODUCTS_URL).then(
-    (res) => res.json()
-  );
+  const products = await fetch(
+    `${process.env.NEXT_PUBLIC_PRODUCTS_URL}?hash=${Date.now()}`
+  ).then((res) => res.json());
 
   return {
     props: {
