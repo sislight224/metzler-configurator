@@ -13,6 +13,7 @@ export type Product = {
 export const ProductsContext = createContext({} as { products: Product[] });
 
 export const ProductsProvider = ({ children, products }) => {
+  console.log({ products });
   return (
     <ProductsContext.Provider value={{ products }}>
       {children}
