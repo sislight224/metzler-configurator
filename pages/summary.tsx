@@ -57,6 +57,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     `${process.env.NEXT_PUBLIC_PRODUCTS_URL}?hash=${Date.now()}`
   ).then((res) => res.json());
 
+  console.log({ products });
+
   return {
     props: { products, jtlToken: extractJtlToken(html) },
   };
