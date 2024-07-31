@@ -122,11 +122,10 @@ export function calculateProducts(states) {
     states.zusatzmodulErweiterun.zusatzmodulErweiterung.title;
 
   const blindModuleAmount =
-    briefcaseAmount % (rowAmount + zuzatsModuleType !== "Ohne" ? 1 : 0);
+    (briefcaseAmount + zuzatsModuleType !== "Ohne" ? 1 : 0) % rowAmount;
 
   const totalItems = briefcaseAmount + blindModuleAmount;
   const itemsPerRow = Math.ceil(totalItems / rowAmount);
-  const deckelAmount = Math.ceil(totalItems / itemsPerRow);
 
   const briefkastenType = states.briefkasten.briefkasteType;
 
@@ -150,9 +149,9 @@ export function calculateProducts(states) {
 
   let products = [];
 
-  if (deckelAmount > 1) {
+  if (itemsPerRow > 1) {
     products.push({
-      amount: deckelAmount,
+      amount: 1,
       configuratorId: deckel[itemsPerRow],
     });
   }
