@@ -48,7 +48,7 @@ const InnenstationPanel: FC<BasePanelProps> = observer(({ isPreview = false, isE
   const { goBack } = useUndoRedoStore();
 
   useEffect(() => {
-    if (panelsConfig.innenstation && isInitialize && !isRestored) {
+    if (panelsConfig.innenstation && isInitialize && /*!isRestored */) {
       setIsCompleted(true);
       setRemixConfig();
       setIsRestored(true);
